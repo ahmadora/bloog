@@ -76,11 +76,10 @@
 @section('content')
     <div class="container">
         <div class="tm-row">
-            <div class="tm-col-left"></div>
-            <main class="tm-col-right">
+{{--            <div class="tm-col"></div>--}}
+            <main class="tm-col">
                 <section class="tm-content">
                     <div class="media my-3 mb-5 tm-service-media tm-service-media-img-l">
-                        {{--                        <img src="img/services-1.png" class="rounded float-left" alt="tm-service-img">--}}
                         <img src="img/services-1.jpg" alt="Image" class="tm-service-img">
                         <div class="media-body tm-service-text">
                             <h2 class="mb-4 tm-content-title">Create Your Customer</h2>
@@ -99,8 +98,8 @@
                     <div class="media my-3 tm-service-media tm-service-media-img-l">
                         <img src="img/services-3.jpg" alt="Image" class="tm-service-img">
                         <div class="media-body tm-service-text">
-                            <h2 class="mb-4 tm-content-title">Template Usage</h2>
-                            <button type="button" class="btn btn-secondary"> <a href="{{__('showAllTenant')}}"> Show All Tenant</a></button>
+                            <h2 class="mb-4 tm-content-title">Delete Customer </h2>
+                            <button type="button" class="btn btn-secondary"> <a href="{{}}"> Delete Customer </a></button>
                             <p></p>
                             <p></p>
                         </div>

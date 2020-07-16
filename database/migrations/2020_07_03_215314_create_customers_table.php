@@ -23,7 +23,8 @@ class CreateCustomersTable extends Migration
             $table->string('email')->unique();
             $table->string('phone');
             $table->string('title');
-            $table->integer('user_id')->unsigned()->nullable();
+            $table->string('authority')->nullable();
+            $table->integer('user_id')->nullable()->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

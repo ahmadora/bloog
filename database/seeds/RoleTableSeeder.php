@@ -14,18 +14,6 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
-        $roles = ['CUSTOMER_USER','USER','TENANT'];
-        foreach ($roles as $role) {
-            Roles::create(['name' => $role]);
-        }
-        Roles::where('name','TENANT')->first()->users()->create([
-                'name' => 'tenant',
-                'email' => 'tenant@thingsboard.org',
-                'password' =>bcrypt('tenant'),
-                'token'=> Str::random(60),
-                'isCustomer'=>null,
-//                'role_id'=>1,
-            ]);
 
 
     }}

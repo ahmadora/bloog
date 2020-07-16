@@ -8,7 +8,6 @@
 
 namespace App\Classes;
 
-
 class Property
 {
     private $title;

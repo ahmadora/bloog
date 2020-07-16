@@ -38,15 +38,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function role()
-    {
-        return $this->hasOne('App\Models\Role', 'role_id');
-    }
-
     public function customer()
     {
-        return $this->hasMany('App\Models\customer');
+        return $this->hasOne('App\Models\customer');
     }
+
     public static function getProperties()
     {
         return [

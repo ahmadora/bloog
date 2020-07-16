@@ -21,6 +21,11 @@ class TenantController extends Controller
 
     public function createCustomer(Request $request)
     {
+        $this->validate($request,[
+           'name'=>'required|max:8',
+            'title'=>'required|max:8|',
+            'email'=>'required'
+        ]);
         $email = Auth::user()->email;
         $token = Auth::user()->token;
         $password = Auth::user()->getAuthPassword();
@@ -34,19 +39,14 @@ class TenantController extends Controller
                 ]
             ]);
             $request = $client->post($URL, ['json' => [
-                "additionalInfo" => "null",
                 "address" => $request->input('address'),///reqired
-                "address2" => "string",
                 "city" => $request->input('city'),///reqired
-                "country" => "string",
-                "createdTime" => 0,
                 "email" => $request->input('email'),//////reqired
                 "name" => $request->input('name'),////reqired
                 "phone" => $request->input('phone'),///reqired
-                "region" => "string",
-                "state" => "string",
                 "title" => $request->input('title'),///reqired
-                'zip' => "string"]]);
+                ]
+            ]);
             $data = $request->getBody()->getContents();
             $responses = json_decode($data, true);
             $customer= new Customer();
@@ -58,10 +58,8 @@ class TenantController extends Controller
             $customer->city =  $responses['city'];
             $customer->phone = $responses['phone'];
             $customer->save();
-            dd($customer);
-            return redirect('show');
+            return redirect('showCustomer');
         }
-        dd($email);
     }
 
     public function index()
@@ -84,23 +82,16 @@ class TenantController extends Controller
 
     public function store(Request $request)
     {
-//        $this->validate($request,[
-//
-//        ]);
-        $email =$request->input('email');
-//        dump($email['email']);
-        $user = DB::table('users')-> select('*')->where('email','=',$request->input('email'))->get();
-//        $customerId =DB::table('customers')->select('*')->where('title','=',re)
-//        dd($user);
-//
-//        return redirect('show');
-    ///store user to customer
+
     }
 
     public function show(){
         $customers = DB::table('customers')->get();
         $users = User::where('isCustomer', '=', false)->get();
-        dd($customers);
+//        foreach ($customers as $customer){
+//            dump($customer->id);
+//        }
+
         return view('admin.customer.show',compact('users','customers'));
         }
 
@@ -119,6 +110,7 @@ class TenantController extends Controller
             $client = new Client([
                 'headers' => [
                     'Accept' => 'application/json',
+                    'Content-Type'=>' application/json',
                     'X-Authorization' => $token,
                 ]
             ]);
@@ -141,7 +133,7 @@ class TenantController extends Controller
         }
     }
 
-    public function destroy($id){
-        //
+    public function destroy(){
+
     }
 }

@@ -14,6 +14,7 @@
     {!! Html::style("Web/fontawesome/css/all.min.css") !!}
 {{--    <link href="cssnew/templatemo-diagoona.css" rel="stylesheet" />--}}
 {!! Html::style("Web/css/templatemo-diagoona.css") !!}
+
     <!--
 
     TemplateMo 550 Diagoona
@@ -69,7 +70,7 @@
 </div>
 
 @yield('scripts')
-
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="Web/js/jquery-3.4.1.min.js"></script>
 <script src="Web/js/bootstrap.min.js"></script>
 <script src="Web/js/jquery.backstretch.min.js"></script>

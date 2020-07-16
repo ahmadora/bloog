@@ -1,4 +1,7 @@
     @extends('layouts.layout')
+    @section('title')
+        index Customer
+        @endsection
     @section('navbar')
         <div class="tm-col-right">
             <nav class="navbar navbar-expand-lg" id="tm-main-nav">
@@ -14,7 +17,10 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link tm-nav-link" href={{__('userService')}}>Services</a>
+                            <a class="nav-link tm-nav-link" href="#">Devices</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link tm-nav-link" href="#">Devices</a>
                         </li>
 
                         <!-- Authentication Links -->

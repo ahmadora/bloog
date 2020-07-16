@@ -75,14 +75,13 @@
 @endsection
 @section('navBarAdmin')@endsection
 @section('content')
+    <div class="container">
     <div class="tm-row">
-        <div class="tm-col-left"></div>
-        <main class="tm-col-left tm-contact-main">
-            <div class="text-primary">
-            {!! Form::open(['method'=>'POST','action'=>'Tenant\TenantController@store']) !!}
-                @csrf
-                <div class="form-group">
-            <table class="table table-responsive-md table-dark">
+        <div class="tm-col-right"></div>
+        <main  class="tm-col-right tm-contact-main">
+            {!! Form::open(['method'=>'POST','action'=>'Tenant\TenantCustomerController@saveNewUser']) !!}
+            @csrf
+            <table width="70%" class="table table-secondary  table-dark" class="center">
                 <thead>
                 <tr>
                     <th scope="col">WorkSpace</th>
@@ -94,20 +93,10 @@
                 @foreach($users as $user)
                     <tr>
                         <th scope="row">
-                            <div class="form-check">
-                                {!! Form::checkbox('email', $user['email'], false ,['']) !!}
-                                <div class="form-row align-items-center">
-                                    <div class="col-auto my-1">
-                                        <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                            <option selected>Choose...</option>
-{{--                                            @foreach($customers as $customer)--}}
-{{--                                             <option  value="{{$customer->title}}" {{$}}selected>--}}
-{{--                                                 {!! $customer->title!!}</option>--}}
-{{--                                            @endforeach--}}
-                                        </select>
-                                    </div>
-                            </div>
+                            <div class="form-group ">
+                                <div class="form-check">
+                                    {!! Form::checkbox('email[]', $user['email'], false ,['class'=>'form-check']) !!}
+                                </div>
                             </div>
                         </th>
                         <td> {!! $user->email !!}</td>
@@ -116,11 +105,23 @@
                 @endforeach
                 </tbody>
             </table>
-                    <div class="text-lg-center-left">
-                        <button type="submit" class="btn btn-primary">Send It </button>
-                    </div>
+            <div class="form-group">
+                <label>Valid Customers</label>
+                <div class="checkbox" class="form-control" name="customerId">
+                    @foreach($customers as $customer)
+                    <label>
+                        {{$customer->title}}
+                        {!! Form::checkbox('customer[]', $customer->customerId, false ,['class'=>'form-check']) !!}
+                    </label>
+                        @endforeach
+                </div>
             </div>
-            </div></main>
-        {!! Form::close() !!}
+            <button type="submit" class="btn btn-secondary">Submit Button</button>
+            <button type="reset" class="btn btn-secondary">Reset Button.</button>
+            {!! Form::close() !!}
+
+        </main>
     </div>
-@endsection
+    </div>
+
+    @endsection

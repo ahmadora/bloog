@@ -15,11 +15,14 @@ body {
     background-color: #2C353C;
 }
 
-a { 
-    transition: all 0.3s ease; 
+a {
+    transition: all 0.3s ease;
     text-decoration: none;
 }
-
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
 ul { padding: 0; }
 a:hover { text-decoration: none; }
 button:focus { outline: none; }
@@ -34,7 +37,7 @@ p { line-height: 1.9; }
     border-radius: 0;
     transform: skewX(-15deg);
     background-color: rgba(0,0,0,0.5);
-    color: white;    
+    color: white;
 }
 
 .navbar-toggler i { transform: skewX(15deg); }
@@ -49,8 +52,8 @@ p { line-height: 1.9; }
 .navbar-expand-lg .navbar-nav .tm-nav-link {
     font-size: 1.3rem;
     font-weight: 400;
-    color: white;    
-    padding-bottom: 30px;    
+    color: white;
+    padding-bottom: 30px;
 }
 
 .nav-item { margin-right: 60px; }
@@ -113,7 +116,7 @@ p { line-height: 1.9; }
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;  
+    justify-content: space-between;
 }
 
 .tm-row { display: flex; }
@@ -121,7 +124,7 @@ p { line-height: 1.9; }
 .tm-col-left {
     width: 50%;
     height: 100%;
-    padding-left: 40px;  
+    padding-left: 40px;
     padding-right: 40px;
 }
 
@@ -144,7 +147,7 @@ p { line-height: 1.9; }
     -webkit-appearance: none;
     width: 10px;
 }
-  
+
 ::-webkit-scrollbar-thumb {
     border-radius: 5px;
     background-color: rgba(255,255,255,.8);
@@ -189,14 +192,14 @@ hr { border-top: 1px solid white; }
     color: #9CC;
 }
 
-/* Service */ 
+/* Service */
 .tm-service-text { max-width: 365px; }
 .tm-service-img { margin-right: 25px; }
 .tm-service-img-r { margin-left: 25px; }
 
 /* Contact */
 .form-control,
-textarea {    
+textarea {
     color: white;
     background-color: transparent;
     background-clip: padding-box;
@@ -213,7 +216,7 @@ textarea {
 
 .form-control:focus {
     color: white;
-    background-color: transparent;    
+    background-color: transparent;
     box-shadow: none;
     border-color: #9CC;
     outline: none;
@@ -228,8 +231,8 @@ textarea {
     margin-right: auto;
 }
 
-.form-control::-webkit-input-placeholder { color: white; } /* Edge */  
-.form-control:-ms-input-placeholder { color: white; } /* Internet Explorer 10-11 */  
+.form-control::-webkit-input-placeholder { color: white; } /* Edge */
+.form-control:-ms-input-placeholder { color: white; } /* Internet Explorer 10-11 */
 .form-control::placeholder { color: white; }
 
 @media (max-width: 1200px) {
@@ -241,7 +244,7 @@ textarea {
     }
 }
 
-@media (max-width: 992px) {    
+@media (max-width: 992px) {
     .tm-nav {
         position: absolute;
         background: rgba(0, 0, 0, 0.8);
@@ -272,7 +275,7 @@ textarea {
         padding-left: 100px;
         padding-right: 30px;
     }
-    
+
     .tm-col-footer { padding-left: 0; }
 }
 
@@ -291,12 +294,12 @@ textarea {
         top: 50px;
         right: 40px;
         padding-bottom: 0;
-    }  
-    
+    }
+
     .tm-bg { flex-direction: column; }
 
     .tm-bg-left {
-        height: 200px;        
+        height: 200px;
         border-bottom: 50px solid rgba(0,0,0,0.5);
         border-right: 0;
         border-top: 0;

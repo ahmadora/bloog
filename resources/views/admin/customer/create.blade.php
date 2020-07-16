@@ -71,6 +71,15 @@
     </div>
 @endsection
 @section('content')
+    @if(count($errors)>0)
+        <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                        @endforeach
+                </ul>
+        </div>
+    @endif
     <div class="tm-row">
         <div class="tm-col-left"></div>
         <main class="tm-col-right tm-contact-main"> <!-- Content -->

@@ -26,7 +26,9 @@ Route::get('/create', 'Tenant\TenantController@create');///tenant
 Route::get('/show', 'Tenant\TenantController@show')->name('showUsers');///tenant
 Route::get('/service', 'Tenant\TenantController@service')->name('tenantServices');////tenant
 Route::post('/createCustomer', 'Tenant\TenantController@createCustomer')->name('createCustomer');////tenant
-Route::post('/show', 'Tenant\TenantController@store')->name('storeCustomer');////tenant
+Route::post('/showCustomer', 'Tenant\TenantCustomerController@saveNewUser');////tenant
+Route::get('/showCustomer', 'Tenant\TenantCustomerController@show');///tenant
+///
 
 Route::middleware('auth')->group(function () {
     Route::prefix('tenant')->group(function () {

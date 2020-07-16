@@ -72,11 +72,12 @@ class RegisterController extends Controller
  ;
 // dd($test);
 
-       return Roles::where('name','USER')->first()->users()->create([
+       User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'token'=> Str::random(60),
+           'isCustomer'=>false
         ]);
 
     }

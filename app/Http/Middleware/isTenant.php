@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class isTenant
 {
@@ -15,7 +17,9 @@ class isTenant
      */
     public function handle($request, Closure $next)
     {
-//        if (auth()->user()->role->name != 'TENANT_ADMIN') {
+//        $user = Auth::user()-email;
+//        $tenant = DB::table('users')->where('isCustomer','=',null);
+//        if () {
 //            return redirect('/home')->with(‘error’,"You don't have Tenant access.");
 //    }
         return $next($request);
