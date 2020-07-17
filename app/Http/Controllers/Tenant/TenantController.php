@@ -58,7 +58,7 @@ class TenantController extends Controller
             $customer->city =  $responses['city'];
             $customer->phone = $responses['phone'];
             $customer->save();
-            return redirect('showCustomer');
+            return redirect('show');
         }
     }
 
@@ -101,36 +101,6 @@ class TenantController extends Controller
 
     public function update(Request $request)
     {
-        $email = Auth::user()->email;
-        $token = Auth::user()->token;
-        $password = Auth::user()->getAuthPassword();
-        $URL = "http://localhost:8080/api/user?sendActivationMail=false";
-        $help = new HelperClass($email, $password, $token);
-        if ($help->isTenant()) {
-            $client = new Client([
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Content-Type'=>' application/json',
-                    'X-Authorization' => $token,
-                ]
-            ]);
-            $request = $client->post($URL, ['json' => [
-                "additionalInfo" => "null",
-                "authority" => "CUSTOMER_USER",
-                "Name" => $request->input('address'),////required
-                "email" => $request->input('email'),/////requird
-                "customerId"=>[
-                    "entityType"=>"CUSTOMER",
-                    "id"=>""   ////required
-                ],
-                /// customerId": {
-                //    "entityType":"CUSTOMER",
-                //    "id": "a97e2c20-c444-11ea-b24e-7b4abc39f8c1"
-                ]
-            ]);
-            $data = $request->getBody()->getContents();
-            $responses = json_decode($data, true);
-        }
     }
 
     public function destroy(){

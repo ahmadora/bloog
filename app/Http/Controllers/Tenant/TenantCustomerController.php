@@ -13,13 +13,6 @@ use Illuminate\Support\Facades\DB;
 
 class TenantCustomerController extends Controller
 {
-
-    public function index()
-    {
-        //
-    }
-
-
     public function saveNewUser(Request $request)
     {
         $string='';
@@ -35,10 +28,11 @@ class TenantCustomerController extends Controller
             $email = Auth::user()->email;
             $token = Auth::user()->token;
             $password = Auth::user()->getAuthPassword();
-
             $URL = "http://localhost:8080/api/user?sendActivationMail=false";
             $help = new HelperClass($email, $password, $token);
             if ($help->isTenant()) {
+                ////////////  save user API ---- user name ---- email ----- customer Id /////////////
+                /// //////// return user id
                 $client = new Client([
                     'headers' => [
                         'Accept' => 'application/json',
@@ -47,7 +41,6 @@ class TenantCustomerController extends Controller
                     ]
                 ]);
                 $request = $client->post($URL, ['json' => [
-                    "additionalInfo" => "null",
                     "authority" => "CUSTOMER_USER",
                     "name"=>$username, /////requierd
                     "email" => $userEmail,/////requird
@@ -89,35 +82,70 @@ class TenantCustomerController extends Controller
         }
     }
 
-    public function store(Request $request)
-    {
-        //
+    public function delete(Request $request){
+        $string = '';
+        $token = Auth::user()->token;
+        $customersId= $request->input('customerId');
+        $usersId = $request->input('userId');
+        if ($customersId != null) {
+            foreach ($customersId as $key) {
+                $customerId = $key;
+                $customerIds = DB::table('customers')->select('customerId')->where('customerId', '=', $customerId)->get('customerId');
+                foreach ($customerIds as $value){$customerId =$value;}
+                $array = json_decode(json_encode($customerId),true);
+                foreach ($array as $value){$string =  $value;}
+//                dd($value);
+                $URL = 'http://localhost:8080/api/customer/'.$string;
+                $client = new Client([
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'X-Authorization'=>$token
+                    ]
+                ]);
+                $request = $client->request('DELETE',$URL);
+                $data = $request->getStatusCode();///200
+                    DB::table('customers')->where('customerId','=',$value)->delete();
+                    DB::table('users')->where('customerId','=',$value)->update([
+                        'isCustomer'=>false,
+                        'customerId'=>null,
+                        'activetionLink'=>null,
+                        'userId'=>null
+                    ]);
+//                dump($data);
+                return redirect()->back();
+            }
+        }else {
+            if ($usersId != null) {
+                foreach ($usersId as $key) {
+                    $userId = $key;
+                    $userId = DB::table('users')->select('userId')->where('userId', '=', $userId)->get('userId');
+                    foreach ($usersId as $value){$userId=$value;}
+                    $array = json_decode(json_encode($userId),true);
+                    $string = $array;
+                    $URL = 'http://localhost:8080/api/user/'.$string;
+                    $client = new Client([
+                        'headers' => [
+                            'Content-Type' => 'application/json',
+                            'X-Authorization'=>$token
+                        ]
+                    ]);
+                    $request = $client->request('DELETE',$URL);
+                    $data = $request->getStatusCode();///200
+                    DB::table('users')->where('userId','=',$array)->update([
+                        'isCustomer'=>false,
+                        'customerId'=>null,
+                        'activetionLink'=>null,
+                        'userId'=>null
+                    ]);
+                    return redirect()->back();
+                }
+            }
+        }
     }
-
-    public function show()
-    {
+    public function show(){
         $customers = DB::table('customers')->select('*')->get();
         $customerIds = DB::table('customers')->get('customerId');
-            $users = DB::table('users')->where('isCustomer','=',true)->get();
-//            dd($users);
-//        dd($userId);
+        $users = DB::table('users')->where('isCustomer','=',true)->get();
         return view('admin.customer.showCustomer',compact('customers','users'));
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
-    public function destroy($id)
-    {
-        //
     }
 }

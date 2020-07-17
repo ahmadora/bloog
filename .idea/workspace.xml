@@ -3,11 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="a7f32c46-0f53-4f26-9f1c-9b7b4f985428" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Tenant/TenantController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Tenant/TenantController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Tenant/TenantCustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Tenant/TenantCustomerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_03_215314_create_customers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_03_215314_create_customers_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/customer/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/customer/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/customer/showCustomer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/customer/showCustomer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +200,7 @@
       <workItem from="1594633497436" duration="2670000" />
       <workItem from="1594654101381" duration="37492000" />
       <workItem from="1594764226382" duration="246000" />
-      <workItem from="1594765909912" duration="62658000" />
+      <workItem from="1594765909912" duration="89077000" />
     </task>
     <servers />
   </component>
@@ -266,14 +266,15 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="510" y="51" key="refactoring.ChangeSignatureDialog/0.0.1536.834@0.0.1536.834" timestamp="1593855718208" />
-    <state x="425" y="189" key="run.anything.popup" timestamp="1594938362411">
+    <state x="425" y="189" width="672" height="677" key="run.anything.popup" timestamp="1595000095451">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="425" y="189" key="run.anything.popup/0.0.1536.834/1920.0.1280.994@0.0.1536.834" timestamp="1594938362411" />
-    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1594831726306" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1594933389445">
+    <state x="425" y="189" width="672" height="677" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1595000095451" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1595002273960">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834/1920.0.1280.994@0.0.1536.834" timestamp="1594933389445" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1595002273960" />
   </component>
 </project>

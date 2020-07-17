@@ -33,7 +33,7 @@
                             <div class="nav-item dropdown" >
                                 <a  class="nav-link tm-nav-link"  href="#" id="navbardrop" role="button" data-toggle="dropdown">browser</a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Customers</a>
+                                    <a class="dropdown-item" href={{route('showCustomerUser')}}>Customers</a>
                                     <a class="dropdown-item" href="#">Devices</a>
                                 </div>
                             </div>
@@ -75,10 +75,16 @@
 @endsection
 @section('navBarAdmin')@endsection
 @section('content')
-    <div class="container">
-    <div class="tm-row">
-        <div class="tm-col-right"></div>
-        <main  class="tm-col-right tm-contact-main">
+    <div class="card text-center" xmlns="http://www.w3.org/1999/html">
+        <div class="card-header">
+            <ul class="nav nav-pills card-header-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href={{route('showCustomerUser')}}>Active Customers</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body text-secondary">
+            <h5 class= "text-primary card-text-black-title">Add Special User To Customer</h5>
             {!! Form::open(['method'=>'POST','action'=>'Tenant\TenantCustomerController@saveNewUser']) !!}
             @csrf
             <table width="70%" class="table table-secondary  table-dark" class="center">
@@ -95,7 +101,7 @@
                         <th scope="row">
                             <div class="form-group ">
                                 <div class="form-check">
-                                    {!! Form::checkbox('email[]', $user['email'], false ,['class'=>'form-check']) !!}
+                                    {!! Form::checkbox('email[]', $user['email'], false ,['class'=>'form-control']) !!}
                                 </div>
                             </div>
                         </th>
@@ -105,23 +111,17 @@
                 @endforeach
                 </tbody>
             </table>
-            <div class="form-group">
-                <label>Valid Customers</label>
-                <div class="checkbox" class="form-control" name="customerId">
-                    @foreach($customers as $customer)
-                    <label>
-                        {{$customer->title}}
-                        {!! Form::checkbox('customer[]', $customer->customerId, false ,['class'=>'form-check']) !!}
-                    </label>
-                        @endforeach
-                </div>
+        </div>
+        <div class="form-group">
+            <div class="checkbox bg-secondary" class="form-control" name="customerId">
+                @foreach($customers as $customer)
+                    <label>{{$customer->title}} </label>
+                    {!! Form::checkbox('customer[]', $customer->customerId, false ,['class'=>'form-control']) !!}
+                @endforeach
             </div>
-            <button type="submit" class="btn btn-secondary">Submit Button</button>
-            <button type="reset" class="btn btn-secondary">Reset Button.</button>
-            {!! Form::close() !!}
-
-        </main>
+        </div>
     </div>
-    </div>
-
+    <button type="submit" class="btn btn-success">Add User To Customers</button>
+    <button type="reset" class="btn btn-danger">Reset Button.</button>
+    {!! Form::close() !!}
     @endsection
