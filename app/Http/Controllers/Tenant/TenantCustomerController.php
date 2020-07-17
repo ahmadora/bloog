@@ -22,20 +22,20 @@ class TenantCustomerController extends Controller
 
     public function saveNewUser(Request $request)
     {
+        $string='';
         $customerIds = $request->input('customer');
         $emails = $request->input('email');
-        foreach ($customerIds as $key){
-            $customerId = $key;
-        }
+        foreach ($customerIds as $key){$customerId = $key;}
         foreach ($emails as $email) {
             $users = DB::table('users')->select('*')->where('email', '=', $email)->get();
             foreach ($users as $user) {
                 $userEmail = $user->email;
-                dump($userEmail);
+                $username = $user->name;
             }
             $email = Auth::user()->email;
             $token = Auth::user()->token;
             $password = Auth::user()->getAuthPassword();
+
             $URL = "http://localhost:8080/api/user?sendActivationMail=false";
             $help = new HelperClass($email, $password, $token);
             if ($help->isTenant()) {
@@ -49,14 +49,13 @@ class TenantCustomerController extends Controller
                 $request = $client->post($URL, ['json' => [
                     "additionalInfo" => "null",
                     "authority" => "CUSTOMER_USER",
-//                    "name" => $request->input('address'),////required
+                    "name"=>$username, /////requierd
                     "email" => $userEmail,/////requird
                     "customerId" => [
                         "entityType" => "CUSTOMER",
                         "id" =>$customerId /////required
-                    ],
-                ]
-                ]);
+                    ],////required
+                ]]);
                 $data = $request->getBody()->getContents();
                 $responses = json_decode($data, true);
                 $userIsCustomer = DB::table('users')->where('email','=' ,$userEmail)->update([
@@ -64,7 +63,13 @@ class TenantCustomerController extends Controller
                     'userId'=>$responses['id']['id'],
                     'customerId'=>$responses['customerId']['id']
                 ]);
-                $URL = "http://localhost:8080/api/user/bf145ef0-c6f2-11ea-b24e-7b4abc39f8c1/activationLink";
+                $userIds = DB::table('users')->select('userId')->where('email','=',$userEmail)->get('userId');
+                foreach ($userIds as $key){$userId =$key;}
+                $array = json_decode(json_encode($userId),true);
+                foreach ($array as $value){$string =  $value;}
+                ///////////////  get Active Link API    userId (string) //////////////
+                /// ///////// return token in link  ///////////////
+                $URL = "http://localhost:8080/api/user/".$string."/activationLink";/////requierd
                 $client = new Client([
                     'headers' => [
                         'Content-Type' => 'application/json',
@@ -73,9 +78,13 @@ class TenantCustomerController extends Controller
                 ]);
                 $request = $client->request('GET',$URL);
                 $data = $request->getBody()->getContents();
-                $response = json_decode($data, true);
-                dd($response);
-                echo 'done';
+                $activationLink = substr($data,-30,30);
+                $activeLink = DB::table('users')->where('email','=',$userEmail)->update([
+                    'activetionLink'=>$activationLink
+                ]);
+                return redirect('showCustomer');
+            }else{
+                return view('404');
             }
         }
     }
@@ -88,8 +97,11 @@ class TenantCustomerController extends Controller
     public function show()
     {
         $customers = DB::table('customers')->select('*')->get();
-        dump($customers);
-        return view('admin.customer.showCustomer',compact('customers'));
+        $customerIds = DB::table('customers')->get('customerId');
+            $users = DB::table('users')->where('isCustomer','=',true)->get();
+//            dd($users);
+//        dd($userId);
+        return view('admin.customer.showCustomer',compact('customers','users'));
     }
 
 
