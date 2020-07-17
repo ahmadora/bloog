@@ -30,7 +30,7 @@
                             <div class="nav-item dropdown" >
                                 <a  class="nav-link tm-nav-link"  href="#" id="navbardrop" role="button" data-toggle="dropdown">browser</a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Customers</a>
+                                    <a class="dropdown-item" href="{{route('showCustomerUser')}}">Customers</a>
                                     <a class="dropdown-item" href="#">Devices</a>
                                 </div>
                             </div>
