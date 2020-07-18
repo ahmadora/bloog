@@ -144,9 +144,11 @@
                             </table>
                         </div>
                     </div>
+
                 </div>
             </div>
             @endforeach
+
             <p  class="text-body "></p>
             <button type="submit" class="btn btn-danger">Delete</button>
             <button type="reset" class="btn btn-primary">Reset</button>

@@ -1,27 +1,15 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title> @yield('title')</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" /> <!-- https://fonts.google.com/ -->
-{{--    <link href="cssnew/bootstrap.min.css" rel="stylesheet" /> <!-- https://getbootstrap.com/ -->--}}
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" />
     {!! Html::style("Web/css/bootstrap.min.css")!!}
-{{--    <link href="fontawesome/css/all.min.css" rel="stylesheet" /> <!-- https://fontawesome.com/ -->--}}
     {!! Html::style("Web/fontawesome/css/all.min.css") !!}
-{{--    <link href="cssnew/templatemo-diagoona.css" rel="stylesheet" />--}}
-{!! Html::style("Web/css/templatemo-diagoona.css") !!}
-
-    <!--
-
-    TemplateMo 550 Diagoona
-
-    https://templatemo.com/tm-550-diagoona
-
-    -->
+    {!! Html::style("Web/css/templatemo-diagoona.css") !!}
 </head>
 
 <body>
@@ -35,11 +23,7 @@
                     <p class="tm-slogon">Make it easy</p>
                 </div>
             </div>
-
-
-                <!-- Navbar links -->
-
-        </div>
+    </div>
 
         @yield('navbar')
     </div>
@@ -60,15 +44,11 @@
             </footer>
         </div>
     </div>
-
-    <!-- Diagonal background design -->
     <div class="tm-bg">
         <div class="tm-bg-left"></div>
         <div class="tm-bg-right"></div>
     </div>
-
 </div>
-
 @yield('scripts')
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="Web/js/jquery-3.4.1.min.js"></script>

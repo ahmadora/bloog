@@ -21,7 +21,7 @@
                             Services
                         </a>
                         <div class="dropdown-menu">
-                            @if(\Illuminate\Support\Facades\Auth::user()->id == 2)
+                            @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
                             <a class="dropdown-item" href={{action('Tenant\TenantController@service')}}>Customer management</a>
                             <a class="dropdown-item" href="#">Device management</a>
                             <a class="dropdown-item" href="#">Asset management</a>
@@ -77,7 +77,7 @@
         <div class="tm-row">
             <div class="tm-col-left"></div>
             <main class="tm-col-right">
-                @if(\Illuminate\Support\Facades\Auth::user()->id ==2)
+                @if(\Illuminate\Support\Facades\Auth::user()->id ==1)
                 <section class="tm-content">
                     <h2 class="mb-5 tm-content-title">Hello Admin You Are Here Take Your Token And Go To Enjoy </h2>
                     <hr class="mb-5">

@@ -11,7 +11,6 @@
                 </button>
                 <div class="collapse navbar-collapse tm-nav" id="navbar-nav">
                     <ul class="navbar-nav text-uppercase">
-
                         <li class="nav-item active">
                             <a class="nav-link tm-nav-link" href={{__('home')}}>Home <span class="sr-only">(current)</span></a>
                         </li>
@@ -22,7 +21,7 @@
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href={{action('Tenant\TenantController@service')}}>Customer management</a>
-                                    <a class="dropdown-item" href="#">Device management</a>
+                                    <a class="dropdown-item" href="{{__('showDevices')}}">Device management</a>
                                     <a class="dropdown-item" href="#">Asset management</a>
                                 </div>
                             </div>
@@ -51,14 +50,12 @@
                                 <a id="navbarDropdown" class="nav-link tm-nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
@@ -70,7 +67,7 @@
             </div>
         </nav>
     </div>
-    @yield('navBarAdmin')
+
 @endsection
 @section('content')
     <div class="container">

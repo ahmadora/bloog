@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('title')
-    Services
-@endsection
+    Edit
+    @endsection
 @section('navbar')
     <div class="tm-col-right">
         <nav class="navbar navbar-expand-lg " id="tm-main-nav">
@@ -13,7 +13,6 @@
                 </button>
                 <div class="collapse navbar-collapse tm-nav" id="navbar-nav">
                     <ul class="navbar-nav text-uppercase">
-
                         <li class="nav-item active">
                             <a class="nav-link tm-nav-link" href={{__('home')}}>Home <span class="sr-only">(current)</span></a>
                         </li>
@@ -24,7 +23,7 @@
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href={{action('Tenant\TenantController@service')}}>Customer management</a>
-                                    <a class="dropdown-item" href="#">Device management</a>
+                                    <a class="dropdown-item" href="{{__('showDevices')}}">Device management</a>
                                     <a class="dropdown-item" href="#">Asset management</a>
                                 </div>
                             </div>
@@ -33,7 +32,7 @@
                             <div class="nav-item dropdown" >
                                 <a  class="nav-link tm-nav-link"  href="#" id="navbardrop" role="button" data-toggle="dropdown">browser</a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="{{route('showCustomerUser')}}">Customers</a>
+                                    <a class="dropdown-item" href="#">Customers</a>
                                     <a class="dropdown-item" href="#">Devices</a>
                                 </div>
                             </div>
@@ -53,14 +52,12 @@
                                 <a id="navbarDropdown" class="nav-link tm-nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
@@ -72,40 +69,7 @@
             </div>
         </nav>
     </div>
-@endsection
+    @endsection
 @section('content')
-    <div class="container">
-        <div class="tm-row">
-            <div class="tm-col"></div>
-            <main class="tm-col">
-                <section class="tm-content">
-                    <div class="media my-3 mb-5 tm-service-media tm-service-media-img-l">
-                        <img src="img/services-1.jpg" alt="Image" class="tm-service-img">
-                        <div class="media-body tm-service-text">
-                            <h2 class="mb-4 tm-content-title">Create Your Customer</h2>
-                            <p>Create your customer and add your user </p>
-                            <button type="button" class="btn btn-secondary"> <a href="{{action('Tenant\TenantController@create')}}">Create Customer</a></button>
-                        </div>
-                    </div>
-                    <div class="media my-3 mb-5 tm-service-media">
-                        <div class="media-body tm-service-text">
-                            <h2 class="mb-4 tm-content-title">Customer Satisfaction</h2>
-                            <p></p>
-                            <button type="button" class="btn btn-secondary"> <a href="{{action('Tenant\TenantController@show')}}"> Show All Customers</a></button>
-                        </div>
-                        <img src="img/services-2.jpg" alt="Image" class="tm-service-img-r">
-                    </div>
-                    <div class="media my-3 tm-service-media tm-service-media-img-l">
-                        <img src="img/services-3.jpg" alt="Image" class="tm-service-img">
-                        <div class="media-body tm-service-text">
-                            <h2 class="mb-4 tm-content-title">Delete Customer </h2>
-                            <button type="button" class="btn btn-secondary"> <a href="{{}}"> Delete Customer </a></button>
-                            <p></p>
-                            <p></p>
-                        </div>
-                    </div>
-                </section>
-            </main>
-        </div>
-    </div>
-@endsection
+
+    @endsection

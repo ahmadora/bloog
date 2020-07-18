@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Tenant;
 
 use App\Classes\HelperClass;
 use App\Http\Controllers\Controller;
-use App\Models\userCustomer;
-use App\User;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -81,7 +79,6 @@ class TenantCustomerController extends Controller
             }
         }
     }
-
     public function delete(Request $request){
         $string = '';
         $token = Auth::user()->token;

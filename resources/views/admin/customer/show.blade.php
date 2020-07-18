@@ -112,15 +112,33 @@
                 </tbody>
             </table>
         </div>
-        <div class="form-group">
-            <div class="checkbox bg-secondary" class="form-control" name="customerId">
-                @foreach($customers as $customer)
-                    <label>{{$customer->title}} </label>
-                    {!! Form::checkbox('customer[]', $customer->customerId, false ,['class'=>'form-control']) !!}
-                @endforeach
+
+                    <div class="card-deck">
+                        @foreach($customers as $customer)
+                            <div class="card">
+                                <<div class="card-body text-secondary">
+                                    <h5 class="card-title">{{$customer->title}}</h5>
+                                    <p class="card-text">fdsdkfj;klsjd;flkj;slkdjflkskldfnkjljknkdfcghjkl</p>
+                                    <div class="form-group">
+                                                <div class="checkbox bg-dark " class="form-control" name="customerId">
+{{--                                                    @foreach($customers as $customer)--}}
+{{--                                                        <label>{{$customer->title}} </label>--}}
+                                                        {!! Form::checkbox('customer[]', $customer->customerId, false ,['class'=>'form-control']) !!}
+{{--                                                    @endforeach--}}
+{{--                                            <button type="submit" value="{{$device->deviceId}}" name="edit" class="btn btn-info btn-circle btn-lg"><i class="fa fa-check"></i>--}}
+{{--                                            </button>--}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+{{--                                        <button type="submit" value="{{$customer->customerId}}" name="delete" class="btn btn-danger btn-circle btn-lg"><i class="fa fa-times"></i>--}}
+{{--                                        </button>--}}
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
             </div>
-        </div>
-    </div>
+
     <button type="submit" class="btn btn-success">Add User To Customers</button>
     <button type="reset" class="btn btn-danger">Reset Button.</button>
     {!! Form::close() !!}

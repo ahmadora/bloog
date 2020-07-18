@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('title')
-    Services
+    Users
 @endsection
 @section('navbar')
     <div class="tm-col-right">
@@ -24,7 +24,7 @@
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href={{action('Tenant\TenantController@service')}}>Customer management</a>
-                                    <a class="dropdown-item" href="#">Device management</a>
+                                    <a class="dropdown-item" href="{{__('showDevices')}}">Device management</a>
                                     <a class="dropdown-item" href="#">Asset management</a>
                                 </div>
                             </div>
@@ -33,7 +33,7 @@
                             <div class="nav-item dropdown" >
                                 <a  class="nav-link tm-nav-link"  href="#" id="navbardrop" role="button" data-toggle="dropdown">browser</a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="{{route('showCustomerUser')}}">Customers</a>
+                                    <a class="dropdown-item" href={{route('showCustomerUser')}}>Customers</a>
                                     <a class="dropdown-item" href="#">Devices</a>
                                 </div>
                             </div>
@@ -73,39 +73,38 @@
         </nav>
     </div>
 @endsection
+@section('navBarAdmin')@endsection
 @section('content')
-    <div class="container">
-        <div class="tm-row">
-            <div class="tm-col"></div>
-            <main class="tm-col">
-                <section class="tm-content">
-                    <div class="media my-3 mb-5 tm-service-media tm-service-media-img-l">
-                        <img src="img/services-1.jpg" alt="Image" class="tm-service-img">
-                        <div class="media-body tm-service-text">
-                            <h2 class="mb-4 tm-content-title">Create Your Customer</h2>
-                            <p>Create your customer and add your user </p>
-                            <button type="button" class="btn btn-secondary"> <a href="{{action('Tenant\TenantController@create')}}">Create Customer</a></button>
+
+    <div class="card text-center" xmlns="http://www.w3.org/1999/html">
+
+
+        <div class="card-body text-secondary">
+
+            {!! Form::open(['method'=>'POST','action'=>'Tenant\TenantDeviceController@store']) !!}
+            @csrf
+            <div class="card-deck">
+                @foreach($devices as $device)
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{$device->name}}</h5>
+                        <p class="card-text">fdsdkfj;klsjd;flkj;slkdjflkskldfnkjljknkdfcghjkl</p>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <button type="input" value="{{$device->deviceId}}" name="edit" class="btn btn-info btn-circle btn-lg"><i class="fa fa-check"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        <button type="submit" value="{{$device->name}}" name="delete" class="btn btn-danger btn-circle btn-lg"><i class="fa fa-times"></i>
+                        </button>
                         </div>
                     </div>
-                    <div class="media my-3 mb-5 tm-service-media">
-                        <div class="media-body tm-service-text">
-                            <h2 class="mb-4 tm-content-title">Customer Satisfaction</h2>
-                            <p></p>
-                            <button type="button" class="btn btn-secondary"> <a href="{{action('Tenant\TenantController@show')}}"> Show All Customers</a></button>
-                        </div>
-                        <img src="img/services-2.jpg" alt="Image" class="tm-service-img-r">
-                    </div>
-                    <div class="media my-3 tm-service-media tm-service-media-img-l">
-                        <img src="img/services-3.jpg" alt="Image" class="tm-service-img">
-                        <div class="media-body tm-service-text">
-                            <h2 class="mb-4 tm-content-title">Delete Customer </h2>
-                            <button type="button" class="btn btn-secondary"> <a href="{{}}"> Delete Customer </a></button>
-                            <p></p>
-                            <p></p>
-                        </div>
-                    </div>
-                </section>
-            </main>
+                </div>
+                @endforeach
+            </div>
         </div>
+
     </div>
-@endsection
+    {!! Form::close() !!}
+    @endsection

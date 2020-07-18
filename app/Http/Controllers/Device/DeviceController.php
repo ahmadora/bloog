@@ -10,7 +10,7 @@ class DeviceController extends Controller
 
     public function index()
     {
-        //
+
     }
 
 
@@ -37,7 +37,7 @@ class DeviceController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
 

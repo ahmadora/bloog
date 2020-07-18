@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
 Route::get('/home', 'HomeController@homePage')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/tenant', 'Tenant\TenantController@index');///tenant
@@ -31,16 +32,29 @@ Route::post('/show', 'Tenant\TenantCustomerController@saveNewUser');////tenant
 Route::get('/showCustomer','Tenant\TenantCustomerController@show')->name('showCustomerUser');
 Route::post('/deleteUser','Tenant\TenantCustomerController@delete')->name('deleteUser');
 
-
 Route::middleware('auth')->group(function () {
     Route::prefix('tenant')->group(function () {
-//        Route::get('/tenant', 'Tenant\TenantController@index');///tenant
+//        Route::get('/', 'Tenant\TenantController@index');///tenant
 //        Route::get('/getToken', 'HomeController@userLogin')->name('takeToken');////tenant
+//        Route::get('/home', 'HomeController@index')->name('home');
 //        Route::get('/create', 'Tenant\TenantController@create');///tenant
 //        Route::get('/show', 'Tenant\TenantController@show');///tenant
 //        Route::get('/service', 'Tenant\TenantController@service')->name('tenantServices');////tenant
 //        Route::post('/createCustomer', 'Tenant\TenantController@createCustomer')->name('createCustomer');////tenant
 //        Route::get('/home', 'HomeController@index')->name('home');
+//        Route::get('/showCustomer','Tenant\TenantCustomerController@show')->name('showCustomerUser');
 
     });
 });
+
+Route::middleware('auth')->group(function () {
+    Route::prefix('device')->group(function () {
+        Route::get('/device', 'Tenant\TenantDeviceController@index');
+        Route::post('/createDevice','Tenant\TenantDeviceController@create')->name('createDevice');
+        Route::get('/show','Tenant\TenantDeviceController@show')->name('showDevices');
+        Route::post('/showDevices','Tenant\TenantDeviceController@store')->name('storeDevice');
+//        Route::get('/show','Tenant\TenantDeviceController@edit')->name('edit');
+
+    });
+});
+

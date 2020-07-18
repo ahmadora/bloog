@@ -88,10 +88,6 @@ class TenantController extends Controller
     public function show(){
         $customers = DB::table('customers')->get();
         $users = User::where('isCustomer', '=', false)->get();
-//        foreach ($customers as $customer){
-//            dump($customer->id);
-//        }
-
         return view('admin.customer.show',compact('users','customers'));
         }
 

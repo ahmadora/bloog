@@ -46,7 +46,7 @@ class HomeController extends Controller
             $response = $response['token'];
             $token = 'Bearer ' . $response;
             $tokenAdmin = DB::table('users')->where('id', $id)->update(['token' => $token]);
-            return redirect('home');
+            return redirect()->back();
         }
     }
 
