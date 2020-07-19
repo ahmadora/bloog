@@ -19,7 +19,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@homePage')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/tenant', 'Tenant\TenantController@index');///tenant
 Route::get('/getToken', 'HomeController@userLogin')->name('takeToken');////tenant
@@ -49,7 +48,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::prefix('device')->group(function () {
-        Route::get('/device', 'Tenant\TenantDeviceController@index');
+        Route::get('/create', 'Tenant\TenantDeviceController@index');
         Route::post('/createDevice','Tenant\TenantDeviceController@create')->name('createDevice');
         Route::get('/show','Tenant\TenantDeviceController@show')->name('showDevices');
         Route::post('/showDevices','Tenant\TenantDeviceController@store')->name('storeDevice');

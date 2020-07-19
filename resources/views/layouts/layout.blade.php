@@ -49,11 +49,12 @@
         <div class="tm-bg-right"></div>
     </div>
 </div>
-@yield('scripts')
+
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="Web/js/jquery-3.4.1.min.js"></script>
 <script src="Web/js/bootstrap.min.js"></script>
 <script src="Web/js/jquery.backstretch.min.js"></script>
 <script src="Web/js/templatemo-script.js"></script>
 </body>
+@yield('scripts')
 </html>

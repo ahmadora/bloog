@@ -22,7 +22,7 @@
                         </a>
                         <div class="dropdown-menu">
                             @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
-                            <a class="dropdown-item" href={{action('Tenant\TenantController@service')}}>Customer management</a>
+                            <a class="dropdown-item" href={{route('tenantServices')}}>Customer management</a>
                             <a class="dropdown-item" href="#">Device management</a>
                             <a class="dropdown-item" href="#">Asset management</a>
                         </div>@endif

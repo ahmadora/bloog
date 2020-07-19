@@ -89,7 +89,7 @@
         </div>
         <div class="card-body text-secondary">
 
-            {!! Form::open(['method'=>'POST','action'=>'Tenant\TenantCustomerController@delete']) !!}
+
             @csrf
             <h5 class= "text-primary card-text-black-title">Special title treatment</h5>
 
@@ -98,10 +98,12 @@
                 <div class="card  ">
                     <div class="card-header" id="headingOne">
                         <h5 class="mb-0">
-                            <button class="btn btn-primary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                              Info {{$customer->title}}
-                            </button>
+                            Info {{$customer->title}}
                         </h5>
+                        <button class="btn btn-primary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+
+                        </button>
+                        {!! Form::open(['method'=>'POST','action'=>'Tenant\TenantCustomerController@delete']) !!}
                         <div class="form-group ">
                             {!! Form::checkbox('customerId[]', $customer->customerId, false ,['class'=>'form-control']) !!}
                         </div>
