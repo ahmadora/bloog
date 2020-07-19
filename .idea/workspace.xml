@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a7f32c46-0f53-4f26-9f1c-9b7b4f985428" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Tenant/TenantDeviceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Tenant/TenantDeviceController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/device/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/device/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +202,8 @@
       <workItem from="1594764226382" duration="246000" />
       <workItem from="1594765909912" duration="98768000" />
       <workItem from="1595057604001" duration="17000" />
-      <workItem from="1595058665011" duration="35210000" />
+      <workItem from="1595058665011" duration="37897000" />
+      <workItem from="1595148088101" duration="6301000" />
     </task>
     <task id="LOCAL-00001" summary="hello from commit v4">
       <created>1595013167367</created>
@@ -286,11 +291,11 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1594899829282" />
-    <state x="465" y="242" key="com.intellij.ide.util.TipDialog" timestamp="1595058680122">
+    <state x="465" y="242" key="com.intellij.ide.util.TipDialog" timestamp="1595148106242">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="465" y="242" key="com.intellij.ide.util.TipDialog/0.0.1536.834/1920.0.1280.994@0.0.1536.834" timestamp="1594765921583" />
-    <state x="465" y="242" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1595058680122" />
+    <state x="465" y="242" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1595148106242" />
     <state x="578" y="334" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595013109119">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

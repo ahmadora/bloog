@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/createDevice','Tenant\TenantDeviceController@create')->name('createDevice');
         Route::get('/show','Tenant\TenantDeviceController@show')->name('showDevices');
         Route::post('/showDevices','Tenant\TenantDeviceController@store')->name('storeDevice');
+        Route::post('/updateDevices','Tenant\TenantDeviceController@update');
 //        Route::get('/show','Tenant\TenantDeviceController@edit')->name('edit');
 
     });

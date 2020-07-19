@@ -99,8 +99,9 @@ class TenantDeviceController extends Controller
         if ($request->input('edit')){
             $deviceId = $request->input('edit');
                 $devices = DB::table('devices')->select('*')->where('deviceId','=',$deviceId)->get();
-//                dd($devices);
-                return view('admin.device.edit',compact('devices'));
+                $customers = DB::table('customers')->select('*')->get();
+//                dd($customers);
+                return view('admin.device.edit',compact('devices','customers'));
         }else{
             $deviceName = $request->input('delete');
             $deviceId = DB::table('devices')->select('deviceId')->where('name','=',$deviceName)->first();
@@ -153,9 +154,33 @@ class TenantDeviceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $string = '';  $string2 = '';
+        $customers = $request->input('customer');
+        $deviceId = $request->input('submit');
+        foreach ($customers as $value){
+            $customer = $value;
+            $string = $value;
+        }
+        $string2 = $deviceId;
+        $token = Auth::user()->token;
+        $URL = 'http://localhost:8080/api/customer/'.$string.'/device/'.$string2;
+        $client = new Client([
+            'headers' => [
+                'Accept' => 'application/json',
+                'Content-Type' => ' application/json',
+                'X-Authorization' => $token,
+            ]
+        ]);
+        $request = $client->post($URL);
+        $data = $request->getBody()->getContents();
+        $responses = json_decode($data, true);
+        DB::table('devices')->select('deviceId')->where('deviceId','=',$deviceId)->update([
+           'available'=>false,
+           'customerId'=>$value
+        ]);
+        dd($responses);
     }
 
     /**

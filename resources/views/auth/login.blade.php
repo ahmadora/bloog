@@ -29,8 +29,8 @@
     <div class="row justify-content-center">
 
         <div class="col-md-8">
-            <div class="p-3 mb-2 bg-secondary  text-white">
-            <div class="card">
+            <div class="p-3 mb-2 bg-secondary ">
+            <div class="card text-secondary">
                 <div class="card-header">{{ __('Login') }}</div>
                 <div class ="text-secondary">
                 <div class="card-body text-secondary" >

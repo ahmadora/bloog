@@ -71,5 +71,51 @@
     </div>
     @endsection
 @section('content')
+    <div class="container">
+    @foreach($devices as $device)
+    <h4 > You Are Edit Device :  {{$device->name}}</h4>
 
+        <div class="card text-center" xmlns="http://www.w3.org/1999/html">
+            <div class="card-header text-secondary">
+                <ul class="nav nav-pills card-header-pills">
+                    <li class="nav-item">
+                        <a class="navbar-text" >Active Customers</a>
+                    </li>
+                </ul>
+                <div class="card-body text-secondary">
+                    {!! Form::open(['method'=>'POST','action'=>'Tenant\TenantDeviceController@update']) !!}
+                    @csrf
+
+                    <table width="70%" class="table table-secondary  table-dark" class="center">
+                        <thead>
+                        <tr>
+                            <th scope="col">WorkSpace</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">User Name</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($customers as $customer)
+                            <tr>
+                                <th scope="row">
+                                    <div class="form-group ">
+                                        <div class="form-check">
+                                            {!! Form::checkbox('customer[]', $customer->customerId, false ,['class'=>'form-control']) !!}
+                                        </div>
+                                    </div>
+                                </th>
+                                <td> {!! $customer->email !!}</td>
+                                <td> {!! $customer->name !!}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    <div class="form-group">
+                    <button type="submit" class="btn btn-success" name="submit" value="{{$device->deviceId}}">Submit</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
     @endsection
