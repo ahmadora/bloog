@@ -86,7 +86,7 @@
             <section class="tm-content tm-contact">
                 <h2 class="mb-4 tm-content-title">Create New Customer</h2>
                 <p class="mb-85"></p>
-                <form id="contact-form" action={{__('createCustomer')}} method="POST">
+                <form id="contact-form" action={{route('create')}} method="POST">
                     @csrf
                     <div class="form-group mb-4">
                         <input type="text" name="name" class="form-control" placeholder="Name" required="" />

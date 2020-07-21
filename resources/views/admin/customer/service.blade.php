@@ -84,7 +84,7 @@
                         <div class="media-body tm-service-text">
                             <h2 class="mb-4 tm-content-title">Create Your Customer</h2>
                             <p>Create your customer and add your user </p>
-                            <button type="button" class="btn btn-secondary"> <a href="{{action('Tenant\TenantController@create')}}">Create Customer</a></button>
+{{--                            <button type="button" class="btn btn-secondary"> <a href="{{route('createCustomer')}}">Create Customer</a></button>--}}
                         </div>
                     </div>
                     <div class="media my-3 mb-5 tm-service-media">
@@ -95,15 +95,7 @@
                         </div>
                         <img src="img/services-2.jpg" alt="Image" class="tm-service-img-r">
                     </div>
-                    <div class="media my-3 tm-service-media tm-service-media-img-l">
-                        <img src="img/services-3.jpg" alt="Image" class="tm-service-img">
-                        <div class="media-body tm-service-text">
-                            <h2 class="mb-4 tm-content-title">Delete Customer </h2>
-                            <button type="button" class="btn btn-secondary"> <a href="{{}}"> Delete Customer </a></button>
-                            <p></p>
-                            <p></p>
-                        </div>
-                    </div>
+
                 </section>
             </main>
         </div>

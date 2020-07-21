@@ -98,11 +98,10 @@
                 <div class="card  ">
                     <div class="card-header" id="headingOne">
                         <h5 class="mb-0">
-                            Info {{$customer->title}}
-                        </h5>
                         <button class="btn btn-primary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-
+                            Info {{$customer->title}}
                         </button>
+                        </h5>
                         {!! Form::open(['method'=>'POST','action'=>'Tenant\TenantCustomerController@delete']) !!}
                         <div class="form-group ">
                             {!! Form::checkbox('customerId[]', $customer->customerId, false ,['class'=>'form-control']) !!}

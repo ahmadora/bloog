@@ -20,14 +20,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/tenant', 'Tenant\TenantController@index');///tenant
-Route::get('/getToken', 'HomeController@userLogin')->name('takeToken');////tenant
-Route::get('/create', 'Tenant\TenantController@create');///tenant
+//Route::get('/tenant', 'Tenant\TenantController@index');///tenant
+//Route::get('/getToken', 'HomeController@userLogin')->name('takeToken');////tenant
 Route::get('/show', 'Tenant\TenantController@show')->name('showUsers');///tenant
 Route::get('/service', 'Tenant\TenantController@service')->name('tenantServices');////tenant
-Route::post('/createCustomer', 'Tenant\TenantController@createCustomer')->name('createCustomer');////tenant
+
 Route::post('/show', 'Tenant\TenantCustomerController@saveNewUser');////tenant
-//Route::post('/show', 'Tenant\TenantCustomerController@delete');////tenant
 Route::get('/showCustomer','Tenant\TenantCustomerController@show')->name('showCustomerUser');
 Route::post('/deleteUser','Tenant\TenantCustomerController@delete')->name('deleteUser');
 
@@ -42,17 +40,20 @@ Route::middleware('auth')->group(function () {
 //        Route::post('/createCustomer', 'Tenant\TenantController@createCustomer')->name('createCustomer');////tenant
 //        Route::get('/home', 'HomeController@index')->name('home');
 //        Route::get('/showCustomer','Tenant\TenantCustomerController@show')->name('showCustomerUser');
-
-    });
-});
-
-Route::middleware('auth')->group(function () {
-    Route::prefix('device')->group(function () {
+        Route::get('/getToken', 'HomeController@userLogin')->name('takeToken');////tenant
+        Route::get('/create', 'Tenant\TenantController@create')->name('createCustomer');///tenant
+        Route::post('/createCustomer', 'Tenant\TenantController@createCustomer')->name('create');////tenant
         Route::get('/create', 'Tenant\TenantDeviceController@index');
         Route::post('/createDevice','Tenant\TenantDeviceController@create')->name('createDevice');
         Route::get('/show','Tenant\TenantDeviceController@show')->name('showDevices');
         Route::post('/showDevices','Tenant\TenantDeviceController@store')->name('storeDevice');
         Route::post('/updateDevices','Tenant\TenantDeviceController@update');
+
+    });
+});
+
+Route::middleware('auth')->group(function () {
+    Route::prefix('user')->group(function () {
 //        Route::get('/show','Tenant\TenantDeviceController@edit')->name('edit');
 
     });

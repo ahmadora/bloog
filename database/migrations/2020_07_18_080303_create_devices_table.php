@@ -25,6 +25,7 @@ class CreateDevicesTable extends Migration
             $table->string('type');
             $table->string('label')->nullable();
             $table->boolean('gateway')->nullable()->default(false);
+            $table->string('assetId')->nullable();
             $table->timestamps();
         });
     }

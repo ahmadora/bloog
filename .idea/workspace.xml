@@ -3,9 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="a7f32c46-0f53-4f26-9f1c-9b7b4f985428" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Tenant/TenantCustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Tenant/TenantCustomerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_18_080303_create_devices_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_18_080303_create_devices_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/customer/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/customer/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/customer/service.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/customer/service.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/customer/showCustomer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/customer/showCustomer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/device/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/device/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -149,7 +155,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin/device" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
@@ -203,7 +209,9 @@
       <workItem from="1594765909912" duration="98768000" />
       <workItem from="1595057604001" duration="17000" />
       <workItem from="1595058665011" duration="37897000" />
-      <workItem from="1595148088101" duration="10050000" />
+      <workItem from="1595148088101" duration="13627000" />
+      <workItem from="1595194200835" duration="7139000" />
+      <workItem from="1595321107713" duration="336000" />
     </task>
     <task id="LOCAL-00001" summary="hello from commit v4">
       <created>1595013167367</created>
@@ -251,7 +259,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -290,15 +300,15 @@
     </state>
     <state x="393" y="12" key="CommitChangelistDialog2/0.0.1536.834/1920.0.1280.994@0.0.1536.834" timestamp="1595106384121" />
     <state x="393" y="12" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1595176583777" />
-    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1594854982189">
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1595257024693">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834/1920.0.1280.994@0.0.1536.834" timestamp="1594446955823" />
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834/1920.0.1280.994@0.0.1536.834" timestamp="1595257024693" />
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1594854982189" />
-    <state x="2380" y="277" key="NewPhpClassDialog" timestamp="1594569915493">
-      <screen x="1920" y="0" width="1280" height="994" />
+    <state x="552" y="232" key="NewPhpClassDialog" timestamp="1595192766332">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="552" y="232" key="NewPhpClassDialog/0.0.1536.834/1920.0.1280.994@0.0.1536.834" timestamp="1593690927389" />
+    <state x="552" y="232" key="NewPhpClassDialog/0.0.1536.834/1920.0.1280.994@0.0.1536.834" timestamp="1595192766332" />
     <state x="2380" y="277" key="NewPhpClassDialog/0.0.1536.834/1920.0.1280.994@1920.0.1280.994" timestamp="1594569915493" />
     <state x="604" y="341" key="NewPhpFileDialog" timestamp="1595101624127">
       <screen x="0" y="0" width="1536" height="834" />
@@ -310,10 +320,11 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1594899829282" />
-    <state x="465" y="242" key="com.intellij.ide.util.TipDialog" timestamp="1595148106242">
-      <screen x="0" y="0" width="1536" height="834" />
+    <state x="2308" y="288" key="com.intellij.ide.util.TipDialog" timestamp="1595194211815">
+      <screen x="1920" y="0" width="1280" height="994" />
     </state>
     <state x="465" y="242" key="com.intellij.ide.util.TipDialog/0.0.1536.834/1920.0.1280.994@0.0.1536.834" timestamp="1594765921583" />
+    <state x="2308" y="288" key="com.intellij.ide.util.TipDialog/0.0.1536.834/1920.0.1280.994@1920.0.1280.994" timestamp="1595194211815" />
     <state x="465" y="242" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1595148106242" />
     <state x="578" y="334" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595013109119">
       <screen x="0" y="0" width="1536" height="834" />

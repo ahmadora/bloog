@@ -79,6 +79,7 @@ class TenantCustomerController extends Controller
             }
         }
     }
+
     public function delete(Request $request){
         $string = '';
         $token = Auth::user()->token;
@@ -108,7 +109,6 @@ class TenantCustomerController extends Controller
                         'activetionLink'=>null,
                         'userId'=>null
                     ]);
-//                dump($data);
                 return redirect()->back();
             }
         }else {
@@ -139,6 +139,7 @@ class TenantCustomerController extends Controller
             }
         }
     }
+
     public function show(){
         $customers = DB::table('customers')->select('*')->get();
         $customerIds = DB::table('customers')->get('customerId');

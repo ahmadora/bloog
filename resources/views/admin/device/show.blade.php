@@ -23,7 +23,7 @@
                                     Services
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href={{action('Tenant\TenantController@service')}}>Customer management</a>
+                                    <a class="dropdown-item" href={{route('tenantServices')}}>Customer management</a>
                                     <a class="dropdown-item" href="{{__('showDevices')}}">Device management</a>
                                     <a class="dropdown-item" href="#">Asset management</a>
                                 </div>
