@@ -19,9 +19,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//Route::get('/deviceService', 'Tenant\TenantDeviceController@service')->name('deviceServices');////user
-
-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('auth')->group(function () {
 
@@ -37,22 +34,18 @@ Route::middleware('auth')->group(function () {
             Route::post('/show', 'Tenant\TenantCustomerController@saveNewUser');////tenant
             Route::post('/deleteUser', 'Tenant\TenantCustomerController@delete')->name('deleteUser');
             Route::get('/', 'HomeController@index')->name('index');
-//            Route::get('/home', 'HomeController@index')->name('home');
             Route::get('/createCustomer', 'Tenant\TenantController@create')->name('createCustomer');///tenant
             Route::post('/create', 'Tenant\TenantController@store')->name('soso');
             Route::get('/showCustomer', 'Tenant\TenantCustomerController@show')->name('showCustomerUser');
             Route::post('/createCustomer', 'Tenant\TenantController@store')->name('create');////tenant/
             Route::get('/showUser', 'Tenant\TenantController@show')->name('showUsers');///tenant
-            Route::get('/getToken', 'HomeController@userLogin')->name('takeToken');////tenant
-           //tenant
+            Route::get('/getToken', 'HomeController@userLogin')->name('takeToken');////te
             Route::get('/service', 'Tenant\TenantController@service')->name('tenantServices');////tenant
             Route::get('/getToken', 'HomeController@userLogin')->name('takeToken');////tenant
             Route::post('/getToken', 'HomeController@userLogin')->name('takeToken');////tenant
             Route::get('/createDevice', 'Tenant\TenantDeviceController@index')->name('createDevice');
-
             Route::get('/showScreen', 'ScreenController@show');
             Route::get("/createScreen", "ScreenController@create")->name("createScreen");
-
             Route::get('/show', 'Tenant\TenantDeviceController@show')->name('showDevices');
             Route::post('/updateDevices', 'Tenant\TenantDeviceController@update');
             Route::post('/showDevices', 'Tenant\TenantDeviceController@store')->name('storeDevice');
@@ -64,11 +57,11 @@ Route::middleware('auth')->group(function () {
     //TODO User
 
         Route::middleware('ActiveUser')->group(function () {
-//            Route::get('/home', 'HomeController@index')->name('userHome');
-//            Route::get("/createScreen", "ScreenController@create")->name("createScreen");
             Route::post("/Screen", "ScreenController@store")->name("screen");
             Route::get("/upload", "ImageController@create")->name('upload');
             Route::post("/image", "ImageController@store")->name('image');
+            Route::get('/service','ScreenController@index')->name('screenService');
+
 
             //user
 

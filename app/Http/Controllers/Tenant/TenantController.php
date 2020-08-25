@@ -17,7 +17,6 @@ class TenantController extends Controller
     public function service()
     {
         $customers = DB::table('customers')->select('title')->get('title');
-//        dd($customers);
         return view('admin.customer.service')->with('customers',$customers);
     }
 

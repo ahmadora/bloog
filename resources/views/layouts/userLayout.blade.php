@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>@yield('title') Admin </title>
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -48,66 +48,87 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand text-uppercase" href="{{route('home')}}">  {{ Auth::user()->name }} </a>
+            <a class="navbar-brand" href="{{route('home')}}">{{\Illuminate\Support\Facades\Auth::user()->name}}</a>
         </div>
         <!-- /.navbar-header -->
 
         <ul class="nav navbar-top-links navbar-right">
 
-            <!-- /.dropdown -->@yield('nav')
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-tasks">
+                    <li>
+                        <a href="{{route('screenService')}}">
+                            <div>
+                                <p>
+                                    <strong>ADs managements 1</strong>
+{{--                                    <span class="pull-right text-muted">40% Complete</span>--}}
+                                </p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-tasks -->
+            </li>
+            <!-- /.dropdown -->
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link tm-nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link tm-nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a class="btn" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                            @endif
+                        </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
         </ul>
         <!-- /.navbar-top-links -->
 
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
-                    <li class="sidebar-search">
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                        <!-- /input-group -->
-                    </li>
+                  @yield('liftSide')
                     <li>
-                        <a href="{{route('index')}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                    </li>
-
-                    <li>
-                        <a href="{{route('deviceService')}}"><i class="fa fa-mobile-phone fa-fw"></i> Devices</a>
-                    </li>
-                    <li>
-                        <a href="{{route('screenService')}}"><i class="fa fa-desktop fa-fw"></i> Screens</a>
-                    </li>
-                    <li>
-                        <a href="{{route('tenantServices')}}"><i class="fa fa-group fa-fw"></i> Customers</a>
-                    </li>
-                    <li>
-                        <a href="{{route('Advertisements')}}"><i class="fa fa-credit-card fa-fw"></i> Advertisements</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i> Edit Entity<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i>Your Services <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{route('createCustomer')}}">Create New Customer </a>
+                                <a href="{{route('createCustomer')}}"> Show your screen </a>
                             </li>
                             <li>
-                                <a href="{{route('createDevice')}}">Create New Device</a>
+                                <a href="{{route('createDevice')}}"> New Advertisements</a>
                             </li>
                             <li>
-                                <a href="{{route('createScreen')}}">Create New Screen</a>
+                                <a href="{{route('createScreen')}}"> Show Advertisements</a>
                             </li>
 
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
-
-                </ul>
             </div>
-
             <!-- /.sidebar-collapse -->
         </div>
         <!-- /.navbar-static-side -->
@@ -116,16 +137,16 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header" class="text-uppercase"> {{ Auth::user()->name }}  </h1>
-            </div>
+                <h1 class="page-header">@yield('header')</h1>
+
             <!-- /.col-lg-12 -->
-            @yield('content')
+
+                @yield('content')
         </div>
     </div>
-
     <!-- /#page-wrapper -->
-</div>
 
+</div>
 <!-- /#wrapper -->
 
 <!-- jQuery -->

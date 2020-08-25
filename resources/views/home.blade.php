@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.userLayout')
 @section('title') Index @endsection
 @section('navbar')
     <div class="tm-col-right">
@@ -27,8 +27,8 @@
                                 <a class="dropdown-item" href="{{route('showUsers')}}">Users management</a>
                             @else
                             @if(\Illuminate\Support\Facades\Auth::user()->isCustomer && \Illuminate\Support\Facades\Auth::user()->isActive)
-                                    <a class="dropdown-item" href="{{route('upload')}}">Upload AD</a>
-                                    <a class="dropdown-item" href="#">ADs management</a>
+{{--                                    <a class="dropdown-item" href="{{route('upload')}}">Upload AD</a>--}}
+                                    <a class="dropdown-item" href="{{route('screenService')}}">Screen management</a>
                                 @endif
                         </div>@endif
                         </div>
