@@ -8,6 +8,6 @@ class Device extends Model
 {
     protected $table = 'devices';
     protected $primaryKey = 'id';
-    protected $fillable =['id','name','type','label','deviceId','tenantId','credentialsType','credentialsId'
+    protected $fillable =['id','name','type','label','deviceId','tenantId','credentialsType','credentialsId','screenId'
     ];
 }

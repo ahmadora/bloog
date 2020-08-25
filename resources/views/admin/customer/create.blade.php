@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layouts')
 @section('navbar')
     <div class="tm-col-right">
         <nav class="navbar navbar-expand-lg " id="tm-main-nav">
@@ -86,7 +86,7 @@
             <section class="tm-content tm-contact">
                 <h2 class="mb-4 tm-content-title">Create New Customer</h2>
                 <p class="mb-85"></p>
-                <form id="contact-form" action={{route('create')}} method="POST">
+                <form id="contact-form" action={{route('soso')}} method="POST">
                     @csrf
                     <div class="form-group mb-4">
                         <input type="text" name="name" class="form-control" placeholder="Name" required="" />
@@ -107,7 +107,7 @@
                         <input type="text" name="title" class="form-control" placeholder="Title" required="" />
                     </div>
                     <div class="text-right">
-                        <button type="submit" class="btn btn-big btn-primary">Send It</button>
+                        <button type="submit" class="btn btn-big btn-primary">Create</button>
                     </div>
                 </form>
             </section>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tenant;
 use App\Classes\HelperClass;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,72 +14,95 @@ class TenantCustomerController extends Controller
 {
     public function saveNewUser(Request $request)
     {
-        $string='';
-        $customerIds = $request->input('customer');
-        $emails = $request->input('email');
-        foreach ($customerIds as $key){$customerId = $key;}
-        foreach ($emails as $email) {
-            $users = DB::table('users')->select('*')->where('email', '=', $email)->get();
-            foreach ($users as $user) {
-                $userEmail = $user->email;
-                $username = $user->name;
+        $email = Auth::user()->email;
+        $token = Auth::user()->token;
+        $password = Auth::user()->getAuthPassword();
+        $URL = "http://localhost:8080/api/user?sendActivationMail=false";
+        $help = new HelperClass($email, $password, $token);
+        if (Auth::user()->id == 1) {
+            $customerIds = $request->input('customer');
+            $emails = $request->input('email');
+            $users = DB::table('users')->select('*')->where('email','=',$request->input('email')[0])->get();
+            foreach ($customerIds as $customerId){
+                if ($customerId != null){
+                    $id = $customerId;
+                }
             }
-            $email = Auth::user()->email;
-            $token = Auth::user()->token;
-            $password = Auth::user()->getAuthPassword();
-            $URL = "http://localhost:8080/api/user?sendActivationMail=false";
-            $help = new HelperClass($email, $password, $token);
-            if ($help->isTenant()) {
-                ////////////  save user API ---- user name ---- email ----- customer Id /////////////
-                /// //////// return user id
-                $client = new Client([
-                    'headers' => [
-                        'Accept' => 'application/json',
-                        'Content-Type' => ' application/json',
-                        'X-Authorization' => $token,
-                    ]
-                ]);
-                $request = $client->post($URL, ['json' => [
-                    "authority" => "CUSTOMER_USER",
-                    "name"=>$username, /////requierd
-                    "email" => $userEmail,/////requird
-                    "customerId" => [
-                        "entityType" => "CUSTOMER",
-                        "id" =>$customerId /////required
-                    ],////required
-                ]]);
-                $data = $request->getBody()->getContents();
-                $responses = json_decode($data, true);
-                $userIsCustomer = DB::table('users')->where('email','=' ,$userEmail)->update([
-                    'isCustomer' => true,
-                    'userId'=>$responses['id']['id'],
-                    'customerId'=>$responses['customerId']['id']
-                ]);
-                $userIds = DB::table('users')->select('userId')->where('email','=',$userEmail)->get('userId');
-                foreach ($userIds as $key){$userId =$key;}
-                $array = json_decode(json_encode($userId),true);
-                foreach ($array as $value){$string =  $value;}
-                ///////////////  get Active Link API    userId (string) //////////////
-                /// ///////// return token in link  ///////////////
-                $URL = "http://localhost:8080/api/user/".$string."/activationLink";/////requierd
-                $client = new Client([
-                    'headers' => [
-                        'Content-Type' => 'application/json',
-                        'X-Authorization'=>$token
-                    ]
-                ]);
-                $request = $client->request('GET',$URL);
-                $data = $request->getBody()->getContents();
-                $activationLink = substr($data,-30,30);
-                $activeLink = DB::table('users')->where('email','=',$userEmail)->update([
-                    'activetionLink'=>$activationLink
-                ]);
-                return redirect('showCustomer');
-            }else{
-                return view('404');
-            }
+//            dd($id);
+            $client = new Client([
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-Type' => ' application/json',
+                    'X-Authorization' => $token,]]);
+            $request = $client->post($URL, ['json' => [
+                "authority" => "CUSTOMER_USER",
+                "name" => $users[0]->name, /////requierd
+                "email" => $users[0]->email,/////requird
+                "customerId" => [
+                    "entityType" => "CUSTOMER",
+                    "id" => $id /////required
+                ],////required
+            ]]);
+            $data = $request->getBody()->getContents();
+            $responses = json_decode($data, true);
+             DB::table('users')->where('email', '=',  $users[0]->email)->update([
+                'isCustomer' => true,
+                'userId' => $responses['id']['id'],
+                'customerId' => $responses['customerId']['id']
+            ]);
+            $userEmail= $responses['email'];
+            $userIds = DB::table('users')->select('userId')->where('email', '=',$responses['email'])->get('userId');
+//            dd($userIds);
+            $string = '';
+            $string = $userIds[0]->userId;
+            $URL = "http://localhost:8080/api/user/" . $string . "/activationLink";/////requierd
+            $client = new Client([
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'X-Authorization' => $token
+                ]
+            ]);
+            $request = $client->request('GET', $URL);
+            $data = $request->getBody()->getContents();
+            $activationLink = substr($data, -30, 30);
+            $activeLink = DB::table('users')->where('email', '=', $userEmail)->update([
+                'activationLink' => $activationLink
+            ]);
+            return redirect()->back();
+        }else{return view('404');}
         }
-    }
+
+
+
+//
+//                        $userIds = DB::table('users')->select('userId')->where('email', '=', $userEmail)->get('userId');
+//                        foreach ($userIds as $key) {
+//                            $userId = $key;
+//                        }
+//                        $array = json_decode(json_encode($userId), true);
+//                        foreach ($array as $value) {
+//                            $string = $value;
+//                            $URL = "http://localhost:8080/api/user/" . $string . "/activationLink";/////requierd
+//                            $client = new Client([
+//                                'headers' => [
+//                                    'Content-Type' => 'application/json',
+//                                    'X-Authorization' => $token
+//                                ]
+//                            ]);
+//                            $request = $client->request('GET', $URL);
+//                            $data = $request->getBody()->getContents();
+//                            $activationLink = substr($data, -30, 30);
+//                            $activeLink = DB::table('users')->where('email', '=', $userEmail)->update([
+//                                'activationLink' => $activationLink
+//                            ]);
+//                            return redirect()->back();
+//                        }
+//                    }
+//                    }
+//                }
+
+
+
 
     public function delete(Request $request){
         $string = '';
@@ -92,7 +116,6 @@ class TenantCustomerController extends Controller
                 foreach ($customerIds as $value){$customerId =$value;}
                 $array = json_decode(json_encode($customerId),true);
                 foreach ($array as $value){$string =  $value;}
-//                dd($value);
                 $URL = 'http://localhost:8080/api/customer/'.$string;
                 $client = new Client([
                     'headers' => [
@@ -105,9 +128,11 @@ class TenantCustomerController extends Controller
                     DB::table('customers')->where('customerId','=',$value)->delete();
                     DB::table('users')->where('customerId','=',$value)->update([
                         'isCustomer'=>false,
+                        'isActive'=>false,
                         'customerId'=>null,
-                        'activetionLink'=>null,
-                        'userId'=>null
+                        'activationLink'=>null,
+                        'userId'=>null,
+
                     ]);
                 return redirect()->back();
             }
@@ -130,8 +155,9 @@ class TenantCustomerController extends Controller
                     $data = $request->getStatusCode();///200
                     DB::table('users')->where('userId','=',$array)->update([
                         'isCustomer'=>false,
+                        'isActive'=>false,
                         'customerId'=>null,
-                        'activetionLink'=>null,
+                        'activationLink'=>null,
                         'userId'=>null
                     ]);
                     return redirect()->back();
@@ -140,6 +166,50 @@ class TenantCustomerController extends Controller
         }
     }
 
+
+
+
+
+
+    public function active(Request $request){
+        return view('home');
+    }
+
+
+    public function activeAccount(Request $request){
+        $email = Auth::user()->email;
+        $token = Auth::user()->token;
+        $password = $request->input('password');
+        $help = new HelperClass($email,$password,$token);
+        $tenantToken= $help->tenantToken();
+
+        $activationLink = Auth::user()->activationLink;
+//        dd($activationLink);
+        $URL = 'http://localhost:8080/api/noauth/activate';
+        $client = new Client([
+            'header' => [
+                'Accept' => 'application/json',
+                'Content-Type'=>' application/json',
+                'X-Authorization' => $tenantToken,
+            ]
+        ]);
+            $request = $client->post($URL, ['json' => [
+                'activateToken' => $activationLink,
+                'password' => $password
+            ],
+        ]);
+        $data = $request->getBody()->getContents();
+        $response = json_decode($data, true);
+        $response = $response['token'];
+        $token = 'Bearer ' . $response;
+        DB::table('users')->select('isActive')->where('email','=',$email)->update([
+            'token'=>$token,
+           'isActive'=>true
+        ]);
+        return redirect()->back();
+    }
+
+
     public function show(){
         $customers = DB::table('customers')->select('*')->get();
         $customerIds = DB::table('customers')->get('customerId');
@@ -147,3 +217,4 @@ class TenantCustomerController extends Controller
         return view('admin.customer.showCustomer',compact('customers','users'));
     }
 }
+

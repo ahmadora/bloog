@@ -16,51 +16,13 @@ class TenantController extends Controller
 {
     public function service()
     {
-        return view('admin.customer.service');
+        $customers = DB::table('customers')->select('title')->get('title');
+//        dd($customers);
+        return view('admin.customer.service')->with('customers',$customers);
     }
 
-    public function createCustomer(Request $request)
-    {
-        $this->validate($request,[
-           'name'=>'required|max:8',
-            'title'=>'required|max:8|',
-            'email'=>'required'
-        ]);
-        $email = Auth::user()->email;
-        $token = Auth::user()->token;
-        $password = Auth::user()->getAuthPassword();
-        $URL = "http://localhost:8080/api/customer";
-        $help = new HelperClass($email, $password, $token);
-        if ($help->isTenant()) {
-            $client = new Client([
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'X-Authorization' => $token,
-                ]
-            ]);
-            $request = $client->post($URL, ['json' => [
-                "address" => $request->input('address'),///reqired
-                "city" => $request->input('city'),///reqired
-                "email" => $request->input('email'),//////reqired
-                "name" => $request->input('name'),////reqired
-                "phone" => $request->input('phone'),///reqired
-                "title" => $request->input('title'),///reqired
-                ]
-            ]);
-            $data = $request->getBody()->getContents();
-            $responses = json_decode($data, true);
-            $customer= new Customer();
-            $customer->customerId =$responses['id']['id'];
-            $customer->address =$responses['address'];
-            $customer->email = $responses['email'];
-            $customer->title = $responses['title'];;
-            $customer->name = $responses['name'];
-            $customer->city =  $responses['city'];
-            $customer->phone = $responses['phone'];
-            $customer->save();
-            return redirect('show');
-        }
-    }
+
+
 
     public function index()
     {
@@ -82,11 +44,81 @@ class TenantController extends Controller
 
     public function store(Request $request)
     {
-
+        $this->validate($request, [
+            'name' => 'required|max:8',
+            'title' => 'required|max:8|',
+            'email' => 'required'
+        ]);
+//        dd($request);
+        $email = Auth::user()->email;
+        $token = Auth::user()->token;
+        $title = $request->input('title');
+        $address = $request->input('address');///reqired
+        $city = $request->input('city');///reqired
+        $emaill = $request->input('email');//////reqired
+        $name = $request->input('name');////reqired
+        $phone = $request->input('phone');///reqired
+        $title = $request->input('title');///reqired
+        $password = Auth::user()->getAuthPassword();
+        $help = new HelperClass($email, $password, $token);
+        $URL = 'http://localhost:8080/api/customers?limit=10';
+        if ($help->isTenant()) {
+            $client = new Client([
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'X-Authorization' => $token,
+                ]
+            ]);
+            $request = $client->request('GET', $URL);
+            $detils = $request->getBody()->getContents();
+            $response = json_decode($detils, true)['data'];
+            foreach ($response as $da) {
+                if ($da['title'] == $title) {
+                    $check = true;
+                } else {
+                    $check = false;
+                }
+            }
+            if (!$check) {
+                $URL = "http://localhost:8080/api/customer";
+                $client = new Client([
+                    'headers' => [
+                        'Accept' => 'application/json',
+                        'X-Authorization' => $token,
+                    ]
+                ]);
+                $request = $client->post($URL, ['json' => [
+                    "address" => $address,///reqired
+                    "city" => $city,///reqired
+                    "email" => $emaill,//////reqired
+                    "name" => $name,////reqired
+                    "phone" => $phone,///reqired
+                    "title" => $title,///reqired
+                ]
+                ]);
+                $status = $request->getStatusCode();
+                $data = $request->getBody()->getContents();
+                $responses = json_decode($data, true);
+                $customer = new Customer();
+                $customer->customerId = $responses['id']['id'];
+                $customer->address = $responses['address'];
+                $customer->email = $responses['email'];
+                $customer->title = $responses['title'];;
+                $customer->name = $responses['name'];
+                $customer->city = $responses['city'];
+                $customer->phone = $responses['phone'];
+                $customer->save();
+            } else {
+                return view('404');
+            }
+            return redirect()->back();
+        }
     }
 
     public function show(){
-        $customers = DB::table('customers')->get();
+        $customers = DB::table('customers')->pluck('title','customerId');
+//        $devices = DB::table('devices')->select('*')->where('customerId','=',);
+//        dd($customers);
         $users = User::where('isCustomer', '=', false)->get();
         return view('admin.customer.show',compact('users','customers'));
         }

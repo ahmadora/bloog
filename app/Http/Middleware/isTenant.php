@@ -17,11 +17,9 @@ class isTenant
      */
     public function handle($request, Closure $next)
     {
-//        $user = Auth::user()-email;
-//        $tenant = DB::table('users')->where('isCustomer','=',null);
-//        if () {
-//            return redirect('/home')->with(‘error’,"You don't have Tenant access.");
-//    }
-        return $next($request);
+        if (auth()->user()->isCustomer === null){
+            return $next($request);
+        }
+        return redirect()->route('home');
     }
 }

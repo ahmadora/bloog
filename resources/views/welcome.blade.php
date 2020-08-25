@@ -11,7 +11,7 @@
             <div class="collapse navbar-collapse tm-nav" id="navbar-nav">
                 <ul class="navbar-nav text-uppercase">
                     <li class="nav-item active">
-                        <a class="nav-link tm-nav-link" href={{__('home')}}>Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link tm-nav-link" href={{route('home')}}>Home <span class="sr-only">(current)</span></a>
                     </li>
 
                     <li class="nav-item">

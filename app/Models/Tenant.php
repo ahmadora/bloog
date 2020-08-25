@@ -11,7 +11,7 @@ class Tenant extends   Model
 
     protected $table = 'tenants';
     protected $primaryKey = 'id';
-    protected $fillable =['id','title','email','phone','address','name','city'
+    protected $fillable =['id','title','email','phone','address','name','city','role'
     ];
 
     public function Customers(){

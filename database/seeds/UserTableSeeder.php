@@ -20,7 +20,7 @@ class UserTableSeeder extends Seeder
             'token'=> Str::random(60),
             'isCustomer'=>null,
         ]);
-        $users = ['alaa', 'ahmad', 'alaa2'];
+        $users = ['alaa', 'ahmad', 'ali','manaf','bayan'];
         foreach ($users as $user) {
             $name = $user;
 
@@ -30,6 +30,17 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('123456'),
                 'token' => Str::random(60),
                 'isCustomer' => false,
+            ]);
+        }
+        $location = ['Damascus','Latakia','Homa'];
+        $screens = ['screen 1', 'screen 2', 'screen 3'];
+        foreach ($screens as $screen) {
+            $name = $screen;
+            \App\Screen::create([
+                'name' => $name,
+                'location' =>$name.'AAA',
+                'customerId' =>Str::random(30),
+                'deviceId' =>Str::random(30),
             ]);
         }
 

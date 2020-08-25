@@ -21,7 +21,9 @@ class CreateDevicesTable extends Migration
             $table->string('credentialsType')->nullable();
             $table->string('credentialsId')->nullable();
             $table->string('name');
+            $table->string('screenId')->nullable();
             $table->boolean('available')->default(true);
+            $table->boolean("availableScreen")->default(true);
             $table->string('type');
             $table->string('label')->nullable();
             $table->boolean('gateway')->nullable()->default(false);

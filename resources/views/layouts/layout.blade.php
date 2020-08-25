@@ -7,9 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title> @yield('title')</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" />
-    {!! Html::style("Web/css/bootstrap.min.css")!!}
-    {!! Html::style("Web/fontawesome/css/all.min.css") !!}
-    {!! Html::style("Web/css/templatemo-diagoona.css") !!}
+    {{Html::style("Web/css/bootstrap.min.css")}}
+    {{Html::style("Web/fontawesome/css/all.min.css") }}
+    {{Html::style("Web/css/templatemo-diagoona.css") }}
+
 </head>
 
 <body>
@@ -49,7 +50,6 @@
         <div class="tm-bg-right"></div>
     </div>
 </div>
-
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="Web/js/jquery-3.4.1.min.js"></script>
 <script src="Web/js/bootstrap.min.js"></script>

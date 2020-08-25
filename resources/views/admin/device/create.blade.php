@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layouts')
 @section('navbar')
     <div class="tm-col-right">
         <nav class="navbar navbar-expand-lg " id="tm-main-nav">
@@ -82,11 +82,25 @@
     @endif
     <div class="tm-row">
         <div class="tm-col-left"></div>
+
+        @if(session()->has('message'))
+            <div class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
+        @endif
         <main class="tm-col-right tm-contact-main"> <!-- Content -->
+
             <section class="tm-content tm-contact">
+
                 <h2 class="mb-4 tm-content-title">Create New Device</h2>
                 <p class="mb-85"></p>
-                <form id="contact-form" action={{__('createDevice')}} method="POST">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <li class="nav-item">
+                            <a class="btn btn-primary" href={{route('showCustomerUser')}}>Available Customers</a>
+                        </li>
+                    </div>
+                <form id="contact-form" action={{route('createDevice')}} method="POST">
                     @csrf
                     <div class="form-group mb-4">
                         <input type="text" name="name" class="form-control" placeholder="Name" required="" />
@@ -106,6 +120,7 @@
                         <button type="submit" class="btn btn-big btn-primary">Send It</button>
                     </div>
                 </form>
+
             </section>
         </main>
     </div>

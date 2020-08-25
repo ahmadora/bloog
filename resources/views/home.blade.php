@@ -13,7 +13,7 @@
                 <ul class="navbar-nav text-uppercase">
 
                     <li class="nav-item active">
-                        <a class="nav-link tm-nav-link" href={{__('home')}}>Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link tm-nav-link" href={{route('home')}}>Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li  class="nav-item">
                         <div class="nav-item dropdown" >
@@ -22,9 +22,14 @@
                         </a>
                         <div class="dropdown-menu">
                             @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
-                            <a class="dropdown-item" href={{route('tenantServices')}}>Customer management</a>
-                            <a class="dropdown-item" href="#">Device management</a>
-                            <a class="dropdown-item" href="#">Asset management</a>
+                                <a class="dropdown-item" href={{route('tenantServices')}}>Customer management</a>
+                                <a class="dropdown-item" href="">Device management</a>
+                                <a class="dropdown-item" href="{{route('showUsers')}}">Users management</a>
+                            @else
+                            @if(\Illuminate\Support\Facades\Auth::user()->isCustomer && \Illuminate\Support\Facades\Auth::user()->isActive)
+                                    <a class="dropdown-item" href="{{route('upload')}}">Upload AD</a>
+                                    <a class="dropdown-item" href="#">ADs management</a>
+                                @endif
                         </div>@endif
                         </div>
                     </li>
@@ -32,8 +37,16 @@
                         <div class="nav-item dropdown" >
                             <a  class="nav-link tm-nav-link"  href="#" id="navbardrop" role="button" data-toggle="dropdown">browser</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Customers</a>
+                                @if(\Illuminate\Support\Facades\Auth::user()->isCustomer && \Illuminate\Support\Facades\Auth::user()->isActive)
+                                <a class="dropdown-item" href="#">ADs</a>
                                 <a class="dropdown-item" href="#">Devices</a>
+                                    @else
+                                    @if(\Illuminate\Support\Facades\Auth::user()->id == 1 )
+                                        <a class="dropdown-item" href="{{route('showCustomerUser')}}">Customer</a>
+                                        <a class="dropdown-item" href="{{route('showDevices')}}">Devices</a>
+                                        @endif
+                                    @endif
+
                             </div>
                         </div>
                     </li>
@@ -52,14 +65,12 @@
                             <a id="navbarDropdown" class="nav-link tm-nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
-
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
@@ -77,13 +88,23 @@
         <div class="tm-row">
             <div class="tm-col-left"></div>
             <main class="tm-col-right">
-                @if(\Illuminate\Support\Facades\Auth::user()->id ==1)
-                <section class="tm-content">
-                    <h2 class="mb-5 tm-content-title">Hello Admin You Are Here Take Your Token And Go To Enjoy </h2>
-                    <hr class="mb-5">
-                        <a class="btn btn-primary" href={{ action('HomeController@userLogin') }}>take token </a>
-                </section>
+                <form method="post" action="{{route("active")}}" enctype="multipart/form-data">
+                    @csrf
+                @if(!\Illuminate\Support\Facades\Auth::user()->id !=1 &&\Illuminate\Support\Facades\Auth::user()->isActive)
+                    <section class="tm-content">
+                        <a class="btn btn-primary" href={{ route('takeToken') }}>take token </a>
+                    </section>
+                @endif
+                    @if(\Illuminate\Support\Facades\Auth::user()->id != 1 && !\Illuminate\Support\Facades\Auth::user()->isCustomer && !\Illuminate\Support\Facades\Auth::user()->isActive   )
+                        <h2 class="mb-5 tm-content-title">Hello User You Are Did not have permission yet</h2>
                     @endif
+                @if(\Illuminate\Support\Facades\Auth::user()->isCustomer && ! \Illuminate\Support\Facades\Auth::user()->isActive)
+                        <section class="tm-content">
+                            <input id="password" type="password"  name="password" required autocomplete="current-password">
+                            <button type="submit"><a class="btn btn-primary" >Active Account</a></button>
+                        </section>
+                    @endif
+                </form>
             </main>
         </div>
     </div>

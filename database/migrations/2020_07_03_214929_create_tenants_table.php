@@ -29,6 +29,7 @@ class CreateTenantsTable extends Migration
             $table->string('title')->nullable();
             $table->string('zip')->nullable();
             $table->integer('user_id')->unsigned()->nullable();
+
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layouts')
 @section('title') IndexTenant @endsection
 @section('navbar')
     <div class="tm-col-right">

@@ -8,9 +8,9 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    public $timestamps = false;
+
     use Notifiable;
-    protected $primaryKey = 'id';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -19,6 +19,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password', 'token','isCustomer'
     ];
+
+    public function user(){
+
+    }
 
     /**
      * The attributes that should be hidden for arrays.
@@ -43,19 +47,19 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\customer');
     }
 
-    public static function getProperties()
-    {
-        return [
-            new Property('ID', null, function($item){ return $item->id; }),
-            new Property('Email', null, function($item){ return $item->email; }),
-            new Property('Name', null, function($item){ return $item->name; }),
-            new Property('Customer',null,function ($item){return $item->isCustomer;}),
-            new Property('Action', 'hyperlink', function($item){
-                return [
-                    'link'=>route('dashboard.publishers.editPermissions', $item->id),
-                    'text'=>'Update permissions'
-                ];
-            }),
-        ];
-    }
+//    public static function getProperties()
+//    {
+//        return [
+//            new Property('ID', null, function($item){ return $item->id; }),
+//            new Property('Email', null, function($item){ return $item->email; }),
+//            new Property('Name', null, function($item){ return $item->name; }),
+//            new Property('Customer',null,function ($item){return $item->isCustomer;}),
+//            new Property('Action', 'hyperlink', function($item){
+//                return [
+//                    'link'=>route('dashboard.publishers.editPermissions', $item->id),
+//                    'text'=>'Update permissions'
+//                ];
+//            }),
+//        ];
+//    }
 }

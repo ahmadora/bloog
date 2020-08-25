@@ -29,11 +29,11 @@
     <div class="row justify-content-center">
 
         <div class="col-md-8">
-            <div class="p-3 mb-2 bg-secondary ">
-            <div class="card text-secondary">
-                <div class="card-header">{{ __('Login') }}</div>
-                <div class ="text-secondary">
-                <div class="card-body text-secondary" >
+            <div class="p-3 mb-2 ">
+{{--            <div class="card text-secondary">--}}
+{{--                <div class="card-header">{{ __('Login') }}</div>--}}
+                <div class="panel-body">
+{{--                <div class="card-body text-secondary" >--}}
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -80,7 +80,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-secondary">
+                                <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
 
@@ -93,10 +93,11 @@
                         </div>
                     </form>
                 </div>
-                </div>
-            </div>
-        </div>
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
         </div>
     </div>
-</div>
+
+
 @endsection

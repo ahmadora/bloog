@@ -20,10 +20,11 @@ class CreateUsersTable extends Migration
             $table->string('userId')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('activetionLink')->nullable();
+            $table->string('activationLink')->nullable();
             $table->string('password');
             $table->string('token','1024')->nullable();
             $table->boolean('isCustomer')->nullable()->default(false);
+            $table->boolean('isActive')->nullable()->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

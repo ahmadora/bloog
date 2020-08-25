@@ -1,11 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.layouts')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <h1>Not Found!</h1>
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Blank</h1>
+                </div>
+                <!-- /.col-lg-12 -->
             </div>
+            <!-- /.row -->
         </div>
-    </div>
+        <!-- /.container-fluid -->
+    </div>v>
 @endsection
