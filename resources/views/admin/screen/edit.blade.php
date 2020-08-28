@@ -61,48 +61,68 @@
         <!-- /.dropdown-user -->
     </li>
 @endsection
+
+
 @section('content')
-    <div class="container">
+    @if(session()->has('message'))
+        <div class="alert alert-success">
+            {{ session()->get('message') }}
+        </div>
+@endif
+        <h4 > You are edit on this screen  : {{$screen->name}}</h4>
 
+        <div class="card text-center" xmlns="http://www.w3.org/1999/html">
+            <div class="card-header text-secondary">
+                <ul class="nav nav-pills card-header-pills">
+                    <li class="nav-item">
+                        <a class="navbar-text" >Active Customers</a>
+                    </li>
+                </ul>
+                <div class="card-body text-secondary">
+                    {!! Form::open(['method'=>'POST','action'=>'ScreenController@assign']) !!}
+                    @csrf
 
-            <div class="card text-center" xmlns="http://www.w3.org/1999/html">
-                <div class="card-header text-secondary">
-                    @foreach($devices as $device)
+                    <table width="70%" class="table table-secondary  table-dark" class="center">
+                        <thead>
+                        <tr class="center">
+                            <th scope="col">#</th>
+                            <th scope="col"> Device Name</th>
+                            <th>Device Status</th>
+                            <th>Created at</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($devices as $device)
 
-                    <ul class="nav nav-pills card-header-pills">
-                        <li class="nav-item">
-                            <a class="navbar-text" > <label>You Are Edit Device :  {{$device->name}} </label></a>
-                        </li>
-                    </ul>
-                    <div class="card-body text-secondary">
-                        {!! Form::open(['method'=>'POST','action'=>'ScreenController@update']) !!}
-                        @csrf
-
-                        <table width="70%" class="table table-secondary  table-dark" class="center">
-                            <thead>
                             <tr>
-                                <th scope="col">Check</th>
-                                <th scope="col">Screen Name</th>
-                                <th scope="col"> Location</th>
+                                @if($device->availableScreen)
+                                <td scope="row">
+                                    <div class="form-group ">
+                                        <div class="form-check">
+
+                                            {!! Form::checkbox('device[]', $device->deviceId, false ,['class'=>'form-control']) !!}
+                                        </div>
+                                    </div>
+                                </td>
+                                @else
+                                    <td>Not Available</td>
+                                @endif
+                                <td> {!! $device->name !!}</td>
+                                    @if($device->available)
+                                <td> available device</td>
+                                        @endif
+                                    <td>{{$device->created_at->format('m/d/Y')}}</td>
                             </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($screens as $screen)
-                                <tr>
-                                   <td> {!! Form::checkbox('screen[]', $screen->id, false ,['class'=>'form-control']) !!}
-                                   </td>
-                                    <td> {!! $screen->name !!}</td>
-                                    <td> {!! $screen->location !!}</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-success" name="deviceName" value="{{$device->name}}">Submit</button>
-                        </div>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success" name="submit" value="{{$screen->id}}">Submit</button>
                     </div>
                 </div>
             </div>
-        @endforeach
-    </div>
+        </div>
+
+{{--    @endforeach--}}
+
 @endsection

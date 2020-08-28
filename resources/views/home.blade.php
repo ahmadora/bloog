@@ -21,16 +21,11 @@
                             Services
                         </a>
                         <div class="dropdown-menu">
-                            @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
-                                <a class="dropdown-item" href={{route('tenantServices')}}>Customer management</a>
-                                <a class="dropdown-item" href="">Device management</a>
-                                <a class="dropdown-item" href="{{route('showUsers')}}">Users management</a>
-                            @else
                             @if(\Illuminate\Support\Facades\Auth::user()->isCustomer && \Illuminate\Support\Facades\Auth::user()->isActive)
-{{--                                    <a class="dropdown-item" href="{{route('upload')}}">Upload AD</a>--}}
+                                    <a class="dropdown-item" href="{{route('upload')}}">Upload AD</a>
                                     <a class="dropdown-item" href="{{route('screenService')}}">Screen management</a>
                                 @endif
-                        </div>@endif
+                        </div>
                         </div>
                     </li>
                     <li class="nav-item">

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Image;
+use App\Models\Customer;
+use App\Screen;
 use App\ScreenImage;
+use App\User;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +27,12 @@ class ImageController extends Controller
             return view('admin.advertisements.show',compact('images','screens'));
         }else{
             if (Auth::user()->isActive){
-
+                $userId =Auth::user()->id;
+                $user=User::find($userId);
+//                $customer = Customer::where('customerId','=',$user->customerId)->get();
+                $screens = Screen::where('customerId','=',$user->customerId)->get();
+                dd($screens);
+                return view('admin.advertisements.show');
             }
         }
     }
@@ -85,7 +93,7 @@ class ImageController extends Controller
             array_push($arr, $deviceToken[0]);
         }
         foreach ($arr as $item) {
-            dump($item->credentialsId);
+
                 $url = 'E:/Projects/bloog'.$path;
                 $URL = 'http://localhost:8080/api/v1/'.$item->credentialsId.'/telemetry';
                 $client = new Client(['headers' => ['Content-Type' => 'application/json',

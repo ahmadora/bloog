@@ -28,7 +28,6 @@ class TenantCustomerController extends Controller
                     $id = $customerId;
                 }
             }
-//            dd($id);
             $client = new Client([
                 'headers' => [
                     'Accept' => 'application/json',
@@ -69,40 +68,14 @@ class TenantCustomerController extends Controller
                 'activationLink' => $activationLink
             ]);
             return redirect()->back();
-        }else{return view('404');}
+        }else
+            {return view('404');}
         }
 
-
-
-//
-//                        $userIds = DB::table('users')->select('userId')->where('email', '=', $userEmail)->get('userId');
-//                        foreach ($userIds as $key) {
-//                            $userId = $key;
-//                        }
-//                        $array = json_decode(json_encode($userId), true);
-//                        foreach ($array as $value) {
-//                            $string = $value;
-//                            $URL = "http://localhost:8080/api/user/" . $string . "/activationLink";/////requierd
-//                            $client = new Client([
-//                                'headers' => [
-//                                    'Content-Type' => 'application/json',
-//                                    'X-Authorization' => $token
-//                                ]
-//                            ]);
-//                            $request = $client->request('GET', $URL);
-//                            $data = $request->getBody()->getContents();
-//                            $activationLink = substr($data, -30, 30);
-//                            $activeLink = DB::table('users')->where('email', '=', $userEmail)->update([
-//                                'activationLink' => $activationLink
-//                            ]);
-//                            return redirect()->back();
-//                        }
-//                    }
-//                    }
-//                }
-
-
-
+    public function index(){
+        $customers = DB::table('customers')->select('title')->get('title');
+        return view('admin.customer.service')->with('customers',$customers);
+    }
 
     public function delete(Request $request){
         $string = '';
@@ -166,15 +139,9 @@ class TenantCustomerController extends Controller
         }
     }
 
-
-
-
-
-
     public function active(Request $request){
         return view('home');
     }
-
 
     public function activeAccount(Request $request){
         $email = Auth::user()->email;
@@ -184,7 +151,6 @@ class TenantCustomerController extends Controller
         $tenantToken= $help->tenantToken();
 
         $activationLink = Auth::user()->activationLink;
-//        dd($activationLink);
         $URL = 'http://localhost:8080/api/noauth/activate';
         $client = new Client([
             'header' => [
@@ -208,7 +174,6 @@ class TenantCustomerController extends Controller
         ]);
         return redirect()->back();
     }
-
 
     public function show(){
         $customers = DB::table('customers')->select('*')->get();

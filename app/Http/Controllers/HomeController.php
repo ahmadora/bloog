@@ -39,7 +39,6 @@ class HomeController extends Controller
             $tokenAdmin = DB::table('users')->where('id', $id)->update(['token' => $token]);
             return redirect()->back();
         } else {
-//            dd($request->input());
             if ($help->isUser()) {
                 $client = new Client(['headers' => ['Content-Type' => 'application/json']]);
                 $request = $client->post($URL, ['json' => [

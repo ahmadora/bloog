@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/service', 'Tenant\TenantCustomerController@index')->name('customerService');////tenant
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('auth')->group(function () {
 
@@ -30,40 +32,44 @@ Route::middleware('auth')->group(function () {
     Route::get('/showImage','ImageController@show')->name('showImages');
     Route::post("/destroy/{id}","ImageController@delete")->name('destroy');
 
-        Route::middleware('isTenant')->group(function () {
+    Route::middleware('isTenant')->group(function () {
+        Route::prefix('customer')->group(function (){
+            Route::get('/show', 'Tenant\TenantCustomerController@show')->name('showCustomerUser');
+            Route::get('/create', 'Tenant\TenantController@create')->name('createCustomer');///tenant
+            Route::post('/create', 'Tenant\TenantController@store')->name('create');////tenant
+            Route::get('/service', 'Tenant\TenantCustomerController@index')->name('customerService');////tenant
+
+        });
+        Route::prefix('screen')->group(function (){
+            Route::get("/createScreen", "ScreenController@create")->name("createScreen");
+            Route::post('/updateScreen', 'ScreenController@update')->name('updateScreen');
+            Route::post("/destroy/{id}","ScreenController@destroy")->name('destroy');
+            Route::post('/editScreen', 'ScreenController@edit')->name('editScreen');
+            Route::post('/assign', 'ScreenController@assign');
+            Route::get('/showScreen', 'ScreenController@show')->name('showScreen');
+            Route::post("/Screen", "ScreenController@store")->name("screen");
+        });
             Route::post('/show', 'Tenant\TenantCustomerController@saveNewUser');////tenant
             Route::post('/deleteUser', 'Tenant\TenantCustomerController@delete')->name('deleteUser');
-            Route::get('/', 'HomeController@index')->name('index');
-            Route::get('/createCustomer', 'Tenant\TenantController@create')->name('createCustomer');///tenant
             Route::post('/create', 'Tenant\TenantController@store')->name('soso');
-            Route::get('/showCustomer', 'Tenant\TenantCustomerController@show')->name('showCustomerUser');
-            Route::post('/createCustomer', 'Tenant\TenantController@store')->name('create');////tenant/
-            Route::get('/showUser', 'Tenant\TenantController@show')->name('showUsers');///tenant
+            Route::get('/', 'HomeController@index')->name('index');
+            Route::get('showuser','Tenant\TenantController@show')->name('userShow');
             Route::get('/getToken', 'HomeController@userLogin')->name('takeToken');////te
-            Route::get('/service', 'Tenant\TenantController@service')->name('tenantServices');////tenant
-            Route::get('/getToken', 'HomeController@userLogin')->name('takeToken');////tenant
-            Route::post('/getToken', 'HomeController@userLogin')->name('takeToken');////tenant
             Route::get('/createDevice', 'Tenant\TenantDeviceController@index')->name('createDevice');
-            Route::get('/showScreen', 'ScreenController@show');
-            Route::get("/createScreen", "ScreenController@create")->name("createScreen");
+
             Route::get('/show', 'Tenant\TenantDeviceController@show')->name('showDevices');
             Route::post('/updateDevices', 'Tenant\TenantDeviceController@update');
             Route::post('/showDevices', 'Tenant\TenantDeviceController@store')->name('storeDevice');
-            Route::post('/updateScreen', 'ScreenController@update');
-            Route::post('/editScreen', 'ScreenController@edit');
             Route::post('/createDevice', 'Tenant\TenantDeviceController@create');
         });
 
     //TODO User
 
         Route::middleware('ActiveUser')->group(function () {
-            Route::post("/Screen", "ScreenController@store")->name("screen");
+
             Route::get("/upload", "ImageController@create")->name('upload');
             Route::post("/image", "ImageController@store")->name('image');
             Route::get('/service','ScreenController@index')->name('screenService');
-
-
-            //user
 
         });
 

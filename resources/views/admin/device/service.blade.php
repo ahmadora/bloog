@@ -8,7 +8,7 @@
     <div class="col-lg-10">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Advertisments Operation
+                Device Services
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">

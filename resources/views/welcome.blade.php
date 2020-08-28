@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layouts')
 @section('titile') Welcome @endsection
 @section('navbar')
     <div class="tm-col-right">

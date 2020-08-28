@@ -23,7 +23,7 @@
                             <tr class="odd gradeX">
                                 <td>{{$image->id}}</td>
 
-                                <td><img src="{{url($image->path)}}" height="300px" width="300px" /> </td>
+                                <td><img src="{{url($image->path)}}" height="30px" width="30px" /> </td>
                                 <td>{{$image->created_at->format('m/d/Y')}}</td>
                                 <td  >
                                     {{--                                <form action="{{ route('destroy',$image->id) }}" method="POST">--}}

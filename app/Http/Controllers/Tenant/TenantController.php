@@ -20,9 +20,6 @@ class TenantController extends Controller
         return view('admin.customer.service')->with('customers',$customers);
     }
 
-
-
-
     public function index()
     {
         return view('admin.index');
@@ -115,11 +112,14 @@ class TenantController extends Controller
     }
 
     public function show(){
-        $customers = DB::table('customers')->pluck('title','customerId');
-//        $devices = DB::table('devices')->select('*')->where('customerId','=',);
-//        dd($customers);
-        $users = User::where('isCustomer', '=', false)->get();
-        return view('admin.customer.show',compact('users','customers'));
+        if (Auth::user()->id == 1){
+            $customers = DB::table('customers')->pluck('title','customerId');
+            $users = User::where('isCustomer', '=', false)->get();
+            return view('admin.customer.show',compact('users','customers'));
+        }else{
+            return view('404');
+        }
+
         }
 
     public function edit($id){

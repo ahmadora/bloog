@@ -30,10 +30,7 @@
 
         <div class="col-md-8">
             <div class="p-3 mb-2 ">
-{{--            <div class="card text-secondary">--}}
-{{--                <div class="card-header">{{ __('Login') }}</div>--}}
                 <div class="panel-body">
-{{--                <div class="card-body text-secondary" >--}}
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -93,11 +90,9 @@
                         </div>
                     </form>
                 </div>
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+
         </div>
     </div>
-
-
+    </div>
+    </div>
 @endsection

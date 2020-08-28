@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>@yield('title') Admin </title>
+    <title>@yield('title')  </title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -53,7 +53,29 @@
         <!-- /.navbar-header -->
 
         <ul class="nav navbar-top-links navbar-right">
-
+            <ul class="dropdown-menu dropdown-user">
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link tm-nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                    @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link tm-nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
+                @else
+                    <li class="nav-item dropdown">
+                        <a class="btn" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        @endif
+                    </li>
+            </ul>
             <!-- /.dropdown -->@yield('nav')
         </ul>
         <!-- /.navbar-top-links -->
@@ -83,7 +105,7 @@
                         <a href="{{route('screenService')}}"><i class="fa fa-desktop fa-fw"></i> Screens</a>
                     </li>
                     <li>
-                        <a href="{{route('tenantServices')}}"><i class="fa fa-group fa-fw"></i> Customers</a>
+                        <a href="#"><i class="fa fa-group fa-fw"></i> Customers</a>
                     </li>
                     <li>
                         <a href="{{route('Advertisements')}}"><i class="fa fa-credit-card fa-fw"></i> Advertisements</a>

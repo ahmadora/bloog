@@ -75,7 +75,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="{{route('showUsers')}}">
+                    <a href="{{route('userShow')}}">
                         <div class="panel-footer">
                             <span class="pull-left">View Services</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -97,7 +97,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="{{route('createScreen')}}">
+                    <a href="{{route('screenService')}}">
                         <div class="panel-footer">
                             <span class="pull-left">View Services</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -163,7 +163,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="{{route('tenantServices')}}">
+                    <a href="{{route('customerService')}}">
                         <div class="panel-footer">
                             <span class="pull-left">View Services</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

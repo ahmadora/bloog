@@ -10,9 +10,7 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use phpDocumentor\Reflection\DocBlock\Tags\Version;
-use Symfony\Component\Console\Input\Input;
-use function GuzzleHttp\Psr7\parse_query;
+
 
 class TenantDeviceController extends Controller
 {
@@ -20,6 +18,7 @@ class TenantDeviceController extends Controller
     {
         return view('admin.device.create');
     }
+
     public function service(){
         return view('admin.device.service');
     }
@@ -81,9 +80,7 @@ class TenantDeviceController extends Controller
     public function store(Request $request)
     {
         $string = '';
-        $token = Auth::user()->token;
-
-//        dd($request->input());
+        $token = Auth::user()->token;;
         if ($request->input('edit')){
             $deviceId = $request->input('edit');
                 $devices = DB::table('devices')->select('*')->where('deviceId','=',$deviceId)->get();
@@ -94,11 +91,8 @@ class TenantDeviceController extends Controller
                 $deviceId = $request->input('assign');
                 $screens = DB::table('screens')->select('*')->where('available','=',true)->get();
                 $devices= DB::table('devices')->select('name')->where('deviceId','=',$deviceId)->get();
-//                dd($devices);
-//                DB::table('')
                 return view('admin.device.assign',compact('devices','screens'));
 
-//                dd($request->input());
             }
             $deviceName = $request->input('delete');
             $deviceId = DB::table('devices')->select('deviceId')->where('name','=',$deviceName)->first();
@@ -126,13 +120,9 @@ class TenantDeviceController extends Controller
     {$string ='';
         $user =Auth::user()->id;
         if ($user == 1) {
-//            $devices = DB::table('devices')->select('*')->get();
             $devices = Device::get();
             $screenId = Device::get('screenId');
             $screens = DB::table('screens')->select('*')->where('id','=',$screenId);
-//            dd($screenId);
-//            $screens = Screen::find($screenId);
-            dd($screens);
             return view('admin.device.show', compact('devices','screens'));
         }else{
             $userId =DB::table('users')->select('customerId')->where('id','=',$user)->get();
