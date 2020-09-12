@@ -75,6 +75,7 @@
                         </form>
                         @endif
                     </li>
+
             </ul>
             <!-- /.dropdown -->@yield('nav')
         </ul>
@@ -105,10 +106,10 @@
                         <a href="{{route('screenService')}}"><i class="fa fa-desktop fa-fw"></i> Screens</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-group fa-fw"></i> Customers</a>
+                        <a href="{{route('customerService')}}"><i class="fa fa-group fa-fw"></i> Customers</a>
                     </li>
                     <li>
-                        <a href="{{route('Advertisements')}}"><i class="fa fa-credit-card fa-fw"></i> Advertisements</a>
+                        <a href="{{route('showImages')}}"><i class="fa fa-credit-card fa-fw"></i> Advertisements</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> Edit Entity<span class="fa arrow"></span></a>

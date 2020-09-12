@@ -74,9 +74,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="{{route('showDevices')}}">Devices</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#">Disabled</a>
-                        </li>
+
                     </ul>
                 </div>
                 @if($customers)

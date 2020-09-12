@@ -15,10 +15,10 @@ class CreateScreenImagesTable extends Migration
     {
         Schema::create('screen_images', function (Blueprint $table) {
             $table->Increments('id');
-            $table->integer('screenId')->unsigned();
-            $table->integer('imageId')->unsigned();
-            $table->foreign('screenId')->on('screens')->references('id')->onDelete('cascade');
-            $table->foreign('imageId')->on('images')->references('id')->onDelete('cascade');
+            $table->integer('screen_id')->unsigned()->nullable();
+            $table->integer('image_id')->unsigned()->nullable();
+            $table->foreign('screen_id')->on('screens')->references('id')->onDelete('cascade');
+            $table->foreign('image_id')->on('images')->references('id')->onDelete('cascade');
 
             $table->timestamps();
         });

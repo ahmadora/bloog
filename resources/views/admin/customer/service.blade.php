@@ -2,39 +2,81 @@
 @section('title')
     Services
 @endsection
-@section('content')
-    <section class="tm-content">
-
-        <h3 class="mb-4 tm-content-title"><label>Create New Customer</label></h3>
-        <button type="button" class="btn btn-circle btn-xl"><a href="{{route('createCustomer')}}"><i
-                    class="fa fa-check"></i></a></button>
-        <h3 class="mb-4 tm-content-title"><label>Show All Customer</label></h3>
-        <button type="button" class="btn btn-primary btn-circle btn-xl"><a href="{{route('showCustomerUser')}}"><i
-                    class="fa fa-list"></i></a></button>
-        <h3 class="mb-4 tm-content-title"><label>Assign User For Customer</label></h3>
-        <button type="button" class="btn btn-success btn-circle btn-xl" href={{ action('HomeController@userLogin') }}><i
-                class="fa fa-link"></i></button>
-
-    </section>
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-group fa-fw"></i> Customers
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <div class="list-group">
-                        @foreach($customers as $customer)
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-group fa-fw"></i>
-                                {{$customer->title}}
-                            </a>
-                        @endforeach
+@section('nav')
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-messages">
+            <li>
+                <a href="#">
+                    <div>
+                        <strong>Ahmad Orabi </strong>
+                        <span class="pull-right text-muted">
+                                        <em>today</em>
+                                    </span>
                     </div>
-                    <a href="#" class="btn btn-default btn-block">View All Alerts</a>
-                </div>
+                    <div>Hello admin you have new request from Ahmad he is new user in your site check this...</div>
+                </a>
+            </li>
+            <li class="divider"></li>
 
+            <li>
+                <a class="text-center" href="#">
+                    <strong>See All Users</strong>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+        <!-- /.dropdown-messages -->
+    </li>
+    <!-- /.dropdown -->
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-user">
+            @guest
+                <li class="nav-item">
+                    <a class="nav-link tm-nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
+                @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="nav-link tm-nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
+                @endif
+            @else
+                <li class="nav-item dropdown">
+                    <a class="btn" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    @endif
+                </li>
+        </ul>
+        <!-- /.dropdown-user -->
+    </li>
+@endsection
+@section('content')
+
+    <div class="col-lg-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Customers Services
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <!-- Nav tabs -->
+                <ul class="nav nav-pills">
+                    <li ><a href="{{route('createCustomer')}}"  class="btn-primary">Create</a>
+                    </li>
+                    <li><a href="{{route('showCustomerUser')}}" class="btn-success">Show</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

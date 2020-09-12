@@ -11,18 +11,16 @@ class User extends Authenticatable
 
     use Notifiable;
 
+    protected $table ='users';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'token','isCustomer'
+        'id','name', 'email', 'password', 'token','isCustomer'
     ];
 
-    public function user(){
-
-    }
 
     /**
      * The attributes that should be hidden for arrays.
@@ -46,20 +44,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\customer');
     }
+    public function image()
+    {
+        return $this->hasMany(Image::class);
+    }
 
-//    public static function getProperties()
-//    {
-//        return [
-//            new Property('ID', null, function($item){ return $item->id; }),
-//            new Property('Email', null, function($item){ return $item->email; }),
-//            new Property('Name', null, function($item){ return $item->name; }),
-//            new Property('Customer',null,function ($item){return $item->isCustomer;}),
-//            new Property('Action', 'hyperlink', function($item){
-//                return [
-//                    'link'=>route('dashboard.publishers.editPermissions', $item->id),
-//                    'text'=>'Update permissions'
-//                ];
-//            }),
-//        ];
-//    }
 }

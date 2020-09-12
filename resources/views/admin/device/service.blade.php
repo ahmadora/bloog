@@ -2,6 +2,65 @@
 @section('title')
     Services
 @endsection
+@section('nav')
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-messages">
+            <li>
+                <a href="#">
+                    <div>
+                        <strong>Ahmad Orabi </strong>
+                        <span class="pull-right text-muted">
+                                        <em>today</em>
+                                    </span>
+                    </div>
+                    <div>Hello admin you have new request from Ahmad he is new user in your site check this...</div>
+                </a>
+            </li>
+            <li class="divider"></li>
+
+            <li>
+                <a class="text-center" href="#">
+                    <strong>See All Users</strong>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+        <!-- /.dropdown-messages -->
+    </li>
+    <!-- /.dropdown -->
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-user">
+            @guest
+                <li class="nav-item">
+                    <a class="nav-link tm-nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
+                @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="nav-link tm-nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
+                @endif
+            @else
+                <li class="nav-item dropdown">
+                    <a class="btn" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    @endif
+                </li>
+        </ul>
+        <!-- /.dropdown-user -->
+    </li>
+    @endsection
 
 @section('content')
 
@@ -14,49 +73,14 @@
             <div class="panel-body">
                 <!-- Nav tabs -->
                 <ul class="nav nav-pills">
-                    <li class="active"><a href="#home-pills" data-toggle="tab">Create</a>
+                    <li ><a href="{{route('createDevice')}}"  class="btn-primary">Create</a>
                     </li>
-                    <li><a href="#profile-pills" data-toggle="tab">Show</a>
-                    </li>
-                    <li><a href="#messages-pills" data-toggle="tab">Edit</a>
-                    </li>
-                    <li><a href="#settings-pills" data-toggle="tab">Delete</a>
-                    </li>
-                    <li><a href="#settings-pills" data-toggle="tab">Linked</a>
+                    <li><a href="{{route('showDevices')}}" class="btn-success">Show</a>
                     </li>
                 </ul>
-
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <div class="tab-pane fade in active" id="home-pills">
-                        <h4>Hello </h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <button type="button" class="btn btn-outline btn-success"> <a href="{{route('createDevice')}}"><i class="fa fa-check"></i></a></button>
-                    </div>
-
-                    <div class="tab-pane fade" id="profile-pills">
-                        <h4>Profile Tab</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <button type="button" class="btn  btn-outline btn-info"> <a href="{{route('showDevices')}}"><i class="fa fa-list"></i></a></button>
-                    </div>
-                    <div class="tab-pane fade" id="messages-pills">
-                        <h4>Messages Tab</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <button type="button" class="btn btn-outline btn-warning">Edit</button>
-                    </div>
-                    <div class="tab-pane fade" id="settings-pills">
-                        <h4>Settings Tab</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <button type="button" class="btn btn-outline btn-danger">Delete</button>
-                    </div>
-                    <div class="tab-pane fade" id="settings-pills">
-                        <h4>Settings Tab</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <button type="button" class="btn btn-outline btn-primary">Assign</button>
-                    </div>
                 </div>
             </div>
         </div>
         <!-- /.panel -->
-    </div>
+
 @endsection

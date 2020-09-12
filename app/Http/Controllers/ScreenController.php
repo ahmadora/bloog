@@ -58,16 +58,15 @@ class ScreenController extends Controller
             foreach ($screens as $screen){
                 $devices = Device::where('screenId','=',$screen->id);
             }
-
+//            dd($screens);
             return view('admin.screen.show', compact('screens'));
         } else {
             if (Auth::user()->isActive) {
                 $customerId = DB::table('users')->select('customerId')->where('id', '=', $userId)->get();
                 $array = json_decode(json_encode($customerId), true);
-                foreach ($array as $id) {
-                    $string = $id;
-                }
+                foreach ($array as $id) {$string = $id;}
                 $screens = DB::table('screens')->select('*')->where('customerId', '=', $string['customerId'])->get();
+//                dd($screens);
                 return view('admin.screen.show', compact('screens'));
             } else {
                 return view('404');

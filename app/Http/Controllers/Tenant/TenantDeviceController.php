@@ -117,13 +117,22 @@ class TenantDeviceController extends Controller
     }
 
     public function show()
-    {$string ='';
+    {
+        $string ='';
         $user =Auth::user()->id;
+        $array = array();
         if ($user == 1) {
             $devices = Device::get();
             $screenId = Device::get('screenId');
-            $screens = DB::table('screens')->select('*')->where('id','=',$screenId);
-            return view('admin.device.show', compact('devices','screens'));
+//
+            foreach ($screenId as $id){
+                $screens = DB::table('screens')->select('*')->where('id','=',$id->screenId)->get();
+               array_push($array,$screens);
+
+            }
+//            dd($array[0][0]->id);
+            return view('admin.device.show', compact('devices','array'));
+
         }else{
             $userId =DB::table('users')->select('customerId')->where('id','=',$user)->get();
             $array = json_decode(json_encode($userId),true);

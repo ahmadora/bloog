@@ -22,6 +22,7 @@ Auth::routes();
 Route::get('/service', 'Tenant\TenantCustomerController@index')->name('customerService');////tenant
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::middleware('auth')->group(function () {
 
     Route::get('/active', 'Tenant\TenantCustomerController@active')->name('activeAccount');
@@ -31,6 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/Advertisements', 'ImageController@index')->name('Advertisements');
     Route::get('/showImage','ImageController@show')->name('showImages');
     Route::post("/destroy/{id}","ImageController@delete")->name('destroy');
+    Route::get('/showScreen', 'ScreenController@show')->name('showScreen');
+
 
     Route::middleware('isTenant')->group(function () {
         Route::prefix('customer')->group(function (){
@@ -46,7 +49,6 @@ Route::middleware('auth')->group(function () {
             Route::post("/destroy/{id}","ScreenController@destroy")->name('destroy');
             Route::post('/editScreen', 'ScreenController@edit')->name('editScreen');
             Route::post('/assign', 'ScreenController@assign');
-            Route::get('/showScreen', 'ScreenController@show')->name('showScreen');
             Route::post("/Screen", "ScreenController@store")->name("screen");
         });
             Route::post('/show', 'Tenant\TenantCustomerController@saveNewUser');////tenant
@@ -66,11 +68,9 @@ Route::middleware('auth')->group(function () {
     //TODO User
 
         Route::middleware('ActiveUser')->group(function () {
-
             Route::get("/upload", "ImageController@create")->name('upload');
             Route::post("/image", "ImageController@store")->name('image');
             Route::get('/service','ScreenController@index')->name('screenService');
-
         });
 
 

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Image;
-use App\Models\Customer;
 use App\Screen;
 use App\ScreenImage;
 use App\User;
@@ -19,27 +18,23 @@ class ImageController extends Controller
     {
         return view('admin.advertisements.service');
     }
+
     public function show()
     {
+        $images = Image::all();
+        $screens = ScreenImage::all();
+        $a = array();
         if (Auth::user()->id == 1){
-            $images = Image::get();
-            $screens = ScreenImage::get();
-            return view('admin.advertisements.show',compact('images','screens'));
+            return view('admin.advertisements.show')->with('images',$images)->with('screens',$screens);
         }else{
             if (Auth::user()->isActive){
-                $userId =Auth::user()->id;
-                $user=User::find($userId);
-//                $customer = Customer::where('customerId','=',$user->customerId)->get();
-                $screens = Screen::where('customerId','=',$user->customerId)->get();
-                dd($screens);
-                return view('admin.advertisements.show');
+                return view('admin.advertisements.show')->with('images',$images)->with('screens',$screens);
             }
         }
     }
 
     public function create()
     {
-        $car = [];
         $arr = array();
         if (Auth::user()->isActive) {
             $userId = Auth::user()->customerId;
@@ -57,32 +52,29 @@ class ImageController extends Controller
             return view('404');
         }
     }
+
     public function store(Request $request)
     {
         $request->validate([
             'path' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'duration' => 'required',
-
         ]);
-
         $image = new Image;
         if ($request->file('path')) {
             $imagePath = $request->file('path');
             $imageName = $imagePath->getClientOriginalName();
             $path = $request->file('path')->storeAs('uploads', $imageName, 'public');
         }
+//        dd($request->input());
         $image->path = '/storage/'.$path;
         $image->duration = $request->duration;
-        $image->userId = Auth::user()->id;
+        $image->user_id = Auth::user()->id;
         $image->save();
-
-
-
         $screeIds = $request->input('screen');
         foreach ($screeIds as $screenId){
             $ImageDev = new ScreenImage();
-            $ImageDev->screenId = $screenId;
-            $ImageDev->imageId = $image->id;
+            $ImageDev->screen_id = $screenId;
+            $ImageDev->image_id = $image->id;
             $ImageDev->save();
         }
         $arr = array();
@@ -107,8 +99,6 @@ class ImageController extends Controller
                 $response = json_decode($data, true);
             }
         return redirect()->back()->with('success', 'Image uploaded successfully');
-
-
     }
 
     public function delete($id){
@@ -117,6 +107,5 @@ class ImageController extends Controller
         $image->delete();
         return redirect()->back();
     }
-
 
 }
