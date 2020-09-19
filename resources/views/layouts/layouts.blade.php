@@ -100,13 +100,13 @@
                     </li>
 
                     <li>
-                        <a href="{{route('deviceService')}}"><i class="fa fa-mobile-phone fa-fw"></i> Devices</a>
+                        <a href="{{route('showDevices')}}"><i class="fa fa-mobile-phone fa-fw"></i> Devices</a>
                     </li>
                     <li>
-                        <a href="{{route('screenService')}}"><i class="fa fa-desktop fa-fw"></i> Screens</a>
+                        <a href="{{route('showScreen')}}"><i class="fa fa-desktop fa-fw"></i> Screens</a>
                     </li>
                     <li>
-                        <a href="{{route('customerService')}}"><i class="fa fa-group fa-fw"></i> Customers</a>
+                        <a href="{{route('userShow')}}"><i class="fa fa-group fa-fw"></i> Customers</a>
                     </li>
                     <li>
                         <a href="{{route('showImages')}}"><i class="fa fa-credit-card fa-fw"></i> Advertisements</a>
@@ -152,6 +152,7 @@
 <!-- /#wrapper -->
 
 <!-- jQuery -->
+
 <script src="../vendor/jquery/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
@@ -162,12 +163,13 @@
 
 <!-- Morris Charts JavaScript -->
 <script src="../vendor/raphael/raphael.min.js"></script>
-<script src="../vendor/morrisjs/morris.min.js"></script>
-<script src="../data/morris-data.js"></script>
-
+<script src="../vendor/flot/jquery.flot.js"></script>
+<script src="../vendor/flot/jquery.flot.time.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="../dist/js/sb-admin-2.js"></script>
 
+@yield('scripts')
 </body>
 
 </html>

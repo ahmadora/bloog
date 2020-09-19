@@ -2,32 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7f32c46-0f53-4f26-9f1c-9b7b4f985428" name="Default Changelist" comment="show customer's devices">
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/customer/device.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/customer/info.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/device/telemetry.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/user/advertisements.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Device/DeviceController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ImageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ImageController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ScreenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ScreenController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Tenant/TenantController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Tenant/TenantController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Tenant/TenantCustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Tenant/TenantCustomerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Tenant/TenantDeviceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Tenant/TenantDeviceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Image.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Device.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Device.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Screen.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Screen.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ScreenImage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ScreenImage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_15_200526_create_images_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_15_200526_create_images_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_15_214424_create_screen_images_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_15_214424_create_screen_images_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_03_214929_create_tenants_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_03_214929_create_tenants_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_15_133326_create_screens_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_15_133326_create_screens_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/advertisements/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/advertisements/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/advertisements/service.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/advertisements/service.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/advertisements/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/advertisements/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/customer/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/customer/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/customer/service.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/customer/service.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/customer/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/customer/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/customer/showCustomer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/customer/showCustomer.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/device/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/device/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/device/service.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/device/service.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/device/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/device/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/device/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/device/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/screen/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/screen/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/screen/service.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/screen/service.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/screen/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/screen/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/layouts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/layouts.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/userLayout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/userLayout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/screen/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/screen/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/uploadImage.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/uploadImage.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -171,20 +172,20 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="D:/Downloads/AdvManegementSystemFinalVersion/AdvManegementSystemFinalVersion/bloog" />
+    <property name="last_opened_file_path" value="D:/PRojects Laravel/StartupProject" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Projects\bloog\resources\views\admin\screen" />
-      <recent name="E:\Projects\bloog\app\Classes" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Projects\bloog\resources\views\user" />
       <recent name="E:\Projects\bloog\resources\views\admin\screen" />
       <recent name="E:\Projects\bloog\resources\views" />
       <recent name="E:\Projects\bloog\resources\views\admin" />
       <recent name="E:\Projects\bloog\resources\views\admin\device" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Projects\bloog\resources\views\admin\screen" />
+      <recent name="E:\Projects\bloog\app\Classes" />
     </key>
   </component>
   <component name="RunManager">
@@ -239,6 +240,23 @@
       <workItem from="1598367559318" duration="38935000" />
       <workItem from="1598891767714" duration="46000" />
       <workItem from="1599742511474" duration="37869000" />
+      <workItem from="1599998665590" duration="19948000" />
+      <workItem from="1600070208799" duration="158000" />
+      <workItem from="1600076771394" duration="1308000" />
+      <workItem from="1600079138851" duration="15136000" />
+      <workItem from="1600164534983" duration="18460000" />
+      <workItem from="1600205907325" duration="1438000" />
+      <workItem from="1600244639418" duration="95000" />
+      <workItem from="1600245148049" duration="120000" />
+      <workItem from="1600245476453" duration="3509000" />
+      <workItem from="1600258785329" duration="16000" />
+      <workItem from="1600259275308" duration="7866000" />
+      <workItem from="1600290470817" duration="467000" />
+      <workItem from="1600291482923" duration="729000" />
+      <workItem from="1600292490773" duration="18562000" />
+      <workItem from="1600378331666" duration="32000" />
+      <workItem from="1600378581225" duration="9740000" />
+      <workItem from="1600448709403" duration="12585000" />
     </task>
     <task id="LOCAL-00001" summary="hello from commit v4">
       <created>1595013167367</created>
@@ -320,11 +338,11 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="542" y="220" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.834@0.0.1536.834" timestamp="1593866255376" />
-    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1599831919939">
+    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1600365186212">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834/1920.0.1280.994@0.0.1536.834" timestamp="1597759597404" />
-    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1599831919939" />
+    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1600365186212" />
     <state x="2297" y="86" width="631" height="822" key="#phpunit.xml" timestamp="1598633366200">
       <screen x="1920" y="0" width="1280" height="994" />
     </state>
@@ -336,41 +354,45 @@
     <state x="393" y="12" key="CommitChangelistDialog2/0.0.1536.834/1920.0.1280.994@0.0.1536.834" timestamp="1595106384121" />
     <state x="2248" y="14" key="CommitChangelistDialog2/0.0.1536.834/1920.0.1280.994@1920.0.1280.994" timestamp="1598632236415" />
     <state x="393" y="12" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1598367749466" />
-    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1599843792133">
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1600431711970">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834/1920.0.1280.994@0.0.1536.834" timestamp="1599843792133" />
-    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1597528850052" />
-    <state x="552" y="232" key="NewPhpClassDialog" timestamp="1597496188798">
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1600431711970" />
+    <state x="552" y="232" key="NewPhpClassDialog" timestamp="1600091440454">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="552" y="232" key="NewPhpClassDialog/0.0.1536.834/1920.0.1280.994@0.0.1536.834" timestamp="1597496188798" />
     <state x="2380" y="277" key="NewPhpClassDialog/0.0.1536.834/1920.0.1280.994@1920.0.1280.994" timestamp="1594569915493" />
-    <state x="552" y="232" key="NewPhpClassDialog/0.0.1536.834@0.0.1536.834" timestamp="1597490462467" />
-    <state x="604" y="341" key="NewPhpFileDialog" timestamp="1598570507683">
+    <state x="552" y="232" key="NewPhpClassDialog/0.0.1536.834@0.0.1536.834" timestamp="1600091440454" />
+    <state x="604" y="341" key="NewPhpFileDialog" timestamp="1600266918736">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="604" y="341" key="NewPhpFileDialog/0.0.1536.834/1920.0.1280.994@0.0.1536.834" timestamp="1598570507683" />
+    <state x="604" y="341" key="NewPhpFileDialog/0.0.1536.834/1920.0.1280.994@0.0.1536.834" timestamp="1600017035060" />
     <state x="2423" y="406" key="NewPhpFileDialog/0.0.1536.834/1920.0.1280.994@1920.0.1280.994" timestamp="1594137392643" />
-    <state x="604" y="341" key="NewPhpFileDialog/0.0.1536.834@0.0.1536.834" timestamp="1597780026469" />
+    <state x="604" y="341" key="NewPhpFileDialog/0.0.1536.834@0.0.1536.834" timestamp="1600266918736" />
     <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1594899829282">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1594899829282" />
-    <state x="183" y="136" width="1042" height="586" key="com.intellij.ide.util.TipDialog" timestamp="1599742515528">
+    <state x="465" y="242" width="1042" height="586" key="com.intellij.ide.util.TipDialog" timestamp="1600448714326">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="465" y="242" key="com.intellij.ide.util.TipDialog/0.0.1536.834/1920.0.1280.994@0.0.1536.834" timestamp="1597941203038" />
+    <state x="465" y="242" key="com.intellij.ide.util.TipDialog/0.0.1536.834/1920.0.1280.994@0.0.1536.834" timestamp="1600448714326" />
     <state x="2308" y="288" key="com.intellij.ide.util.TipDialog/0.0.1536.834/1920.0.1280.994@1920.0.1280.994" timestamp="1595194211815" />
-    <state x="183" y="136" width="1042" height="586" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1599742515528" />
-    <state x="578" y="334" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1598627516528">
+    <state x="183" y="136" width="1042" height="586" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1600378582855" />
+    <state x="578" y="334" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1600088435571">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="578" y="334" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1598627516528" />
+    <state x="578" y="334" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1600088435571" />
     <state x="349" y="72" key="editAsTableFormatDialogDimension" timestamp="1594711276911">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="349" y="72" key="editAsTableFormatDialogDimension/0.0.1536.834@0.0.1536.834" timestamp="1594711276911" />
+    <state x="463" y="15" width="609" height="804" key="find.popup" timestamp="1600099990579">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="463" y="15" width="609" height="804" key="find.popup/0.0.1536.834@0.0.1536.834" timestamp="1600099990579" />
     <state x="510" y="51" key="refactoring.ChangeSignatureDialog" timestamp="1593855718208">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -380,10 +402,10 @@
     </state>
     <state x="425" y="189" key="run.anything.popup/0.0.1536.834/1920.0.1280.994@0.0.1536.834" timestamp="1594938362411" />
     <state x="425" y="189" width="672" height="677" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1597686594490" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1599751300768">
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1600444624049">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834/1920.0.1280.994@0.0.1536.834" timestamp="1598566592716" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1599751300768" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1600444624049" />
   </component>
 </project>

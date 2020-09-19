@@ -69,7 +69,6 @@
     @endif
     @foreach($devices as $device)
     <h4 > You Are Edit Device :  {{$device->name}}</h4>
-
         <div class="card text-center" xmlns="http://www.w3.org/1999/html">
             <div class="card-header text-secondary">
                 <ul class="nav nav-pills card-header-pills">
@@ -87,6 +86,8 @@
                             <th scope="col">Add</th>
 {{--                            <th scope="col"></th>--}}
                             <th scope="col">Customer Name</th>
+                            <th scope="col">Customer Email</th>
+                            <th scope="col">Created At</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -99,8 +100,9 @@
                                         </div>
                                     </div>
                                 </th>
-{{--                                <td> {!! $customer->email !!}</td>--}}
                                 <td> {!! $customer->name !!}</td>
+                                <td> {!! $customer->email !!}</td>
+                                <td>{{$customer->created_at}}</td>
                             </tr>
                         @endforeach
                         </tbody>

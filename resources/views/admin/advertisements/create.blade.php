@@ -1,4 +1,8 @@
-@extends('layouts.layout')
+@if(\Illuminate\Support\Facades\Auth::user()->id ==1)
+    @extends('layouts.layouts')
+@else
+    @extends('layouts.userLayout')
+@endif
 @section('title') Services @endsection
 @section('nav')
     <li class="dropdown">

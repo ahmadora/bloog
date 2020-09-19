@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Image;
+use App\Models\Customer;
+use App\Models\Device;
 use App\Screen;
 use App\ScreenImage;
 use App\User;
@@ -23,12 +25,20 @@ class ImageController extends Controller
     {
         $images = Image::all();
         $screens = ScreenImage::all();
-        $a = array();
-        if (Auth::user()->id == 1){
-            return view('admin.advertisements.show')->with('images',$images)->with('screens',$screens);
-        }else{
-            if (Auth::user()->isActive){
-                return view('admin.advertisements.show')->with('images',$images)->with('screens',$screens);
+        $customers = array();
+        foreach ($images as $image){
+            $user = User::where('id','=',$image->user_id)->get('customerId');
+            $customer = Customer::where('customerId','=',$user[0]->customerId)->get();
+
+            array_push($customers, $customer[0]->name);
+
+        }
+//        dd($customers);
+        if (Auth::user()->id == 1) {
+            return view('admin.advertisements.show')->with('images', $images)->with('screens', $screens)->with('customers',$customers);
+        } else {
+            if (Auth::user()->isActive) {
+                return view('user.advertisements')->with('images', $images)->with('screens', $screens);
             }
         }
     }
@@ -65,13 +75,12 @@ class ImageController extends Controller
             $imageName = $imagePath->getClientOriginalName();
             $path = $request->file('path')->storeAs('uploads', $imageName, 'public');
         }
-//        dd($request->input());
-        $image->path = '/storage/'.$path;
+        $image->path = '/storage/' . $path;
         $image->duration = $request->duration;
         $image->user_id = Auth::user()->id;
         $image->save();
         $screeIds = $request->input('screen');
-        foreach ($screeIds as $screenId){
+        foreach ($screeIds as $screenId) {
             $ImageDev = new ScreenImage();
             $ImageDev->screen_id = $screenId;
             $ImageDev->image_id = $image->id;
@@ -80,32 +89,50 @@ class ImageController extends Controller
         $arr = array();
         $arr2 = array();
         $screeIds = $request->input('screen');
+        $token = Auth::user()->token;
         foreach ($screeIds as $screenId) {
             $deviceToken = DB::table('devices')->select('credentialsId')->where('screenId', '=', $screenId)->get();
             array_push($arr, $deviceToken[0]);
         }
         foreach ($arr as $item) {
+            $url = 'E:/Projects/bloog' . $path;
+            $URL = 'http://localhost:8080/api/v1/' . $item->credentialsId . '/telemetry';
+            $client = new Client(['headers' => [
+                'Content-Type' => 'application/json',
+                'X-Authorization'=>$token
+            ]]);
+            $request = $client->post($URL, ['json' => [
+                'url' => $url,
+                'duration' => $image->duration
+            ]]);
+            $data = $request->getStatusCode();
 
-                $url = 'E:/Projects/bloog'.$path;
-                $URL = 'http://localhost:8080/api/v1/'.$item->credentialsId.'/telemetry';
-                $client = new Client(['headers' => ['Content-Type' => 'application/json',
-
-                ]]);
-                $request = $client->post($URL, ['json' => [
-                    'url'=>$url,
-                    'duration'=>$image->duration
-                ]]);
-                $data = $request->getBody()->getContents();
-                $response = json_decode($data, true);
-            }
+            $response = json_decode($data, true);
+        }
         return redirect()->back()->with('success', 'Image uploaded successfully');
     }
 
-    public function delete($id){
-
+    public function delete($id)
+    {
+        $token = Auth::user()->token;
         $image = Image::find($id);
+        $imageScreens = ScreenImage::where('image_id', '=', $id)->get();
+        foreach ($imageScreens as $imageScreen)  {
+            $device = Device::where('deviceId','=',$imageScreen->screen->deviceId)->get('credentialsId');
+            $URL = 'http://localhost:8080/api/v1/' . $device[0]->credentialsId. '/telemetry';
+            $client = new Client(['headers' => [
+                'Content-Type' => 'application/json',
+                'X-Authorization'=>$token
+            ]]);
+            $request = $client->post($URL, ['json' => [
+                'ads' => 'delete'
+            ]]);
+            $data = $request->getStatusCode();
+        }
+        unlink(public_path() . $image->path);
         $image->delete();
         return redirect()->back();
     }
+
 
 }

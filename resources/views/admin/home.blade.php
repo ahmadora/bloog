@@ -70,8 +70,8 @@
                                 <i class="fa fa-user fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">Users</div>
-                                <div>Users Management!</div>
+                                <div class="huge">Customer</div>
+                                <div>Customer Management!</div>
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#">
+                    <a href="{{route('deviceService')}}">
                         <div class="panel-footer">
                             <span class="pull-left">View Services</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -141,7 +141,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="{{route('Advertisements')}}">
+                    <a href="{{route('showImages')}}">
                         <div class="panel-footer">
                             <span class="pull-left">View Services</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -150,28 +150,28 @@
                     </a>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-group-card fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">Customer</div>
-                                <div>Customer managements!</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="{{route('customerService')}}">
-                        <div class="panel-footer">
-                            <span class="pull-left">View Services</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+{{--            <div class="col-lg-3 col-md-6">--}}
+{{--                <div class="panel panel-info">--}}
+{{--                    <div class="panel-heading">--}}
+{{--                        <div class="row">--}}
+{{--                            <div class="col-xs-3">--}}
+{{--                                <i class="fa fa-group-card fa-5x"></i>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-xs-9 text-right">--}}
+{{--                                <div class="huge">Customer</div>--}}
+{{--                                <div>Customer managements!</div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <a href="{{route('customerService')}}">--}}
+{{--                        <div class="panel-footer">--}}
+{{--                            <span class="pull-left">View Services</span>--}}
+{{--                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>--}}
+{{--                            <div class="clearfix"></div>--}}
+{{--                        </div>--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </div>
                 <h4><label>Take Token</label></h4>
                 <button type="button" class="btn btn-success btn-circle btn-xl"> <a href="{{route('takeToken')}}"><i class="fa fa-link"></i></a></button>

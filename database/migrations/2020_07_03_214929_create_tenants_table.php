@@ -18,7 +18,7 @@ class CreateTenantsTable extends Migration
             $table->string('additional_info')->nullable()->default('null');
             $table->string('address');
             $table->string('name');
-            $table->boolean('above')->default('false');
+//            $table->boolean('above')->default('false');
             $table->string('address2')->nullable();
             $table->string('city');
             $table->string('country')->nullable();

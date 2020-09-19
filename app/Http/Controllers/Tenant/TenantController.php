@@ -17,7 +17,7 @@ class TenantController extends Controller
     public function service()
     {
         $customers = DB::table('customers')->select('title')->get('title');
-        return view('admin.customer.service')->with('customers',$customers);
+        return view('admin.customer.service')->with('customers', $customers);
     }
 
     public function index()
@@ -45,7 +45,6 @@ class TenantController extends Controller
             'title' => 'required|max:8|',
             'email' => 'required'
         ]);
-//        dd($request);
         $email = Auth::user()->email;
         $token = Auth::user()->token;
         $title = $request->input('title');
@@ -107,30 +106,18 @@ class TenantController extends Controller
             } else {
                 return view('404');
             }
-            return redirect()->back();
+            return redirect()->route('userShow');
         }
     }
 
-    public function show(){
-        if (Auth::user()->id == 1){
-            $customers = DB::table('customers')->pluck('title','customerId');
+    public function show()
+    {
+        if (Auth::user()->id == 1) {
+            $customers = DB::table('customers')->pluck('title', 'customerId');
             $users = User::where('isCustomer', '=', false)->get();
-            return view('admin.customer.show',compact('users','customers'));
-        }else{
+            return view('admin.customer.show', compact('users', 'customers'));
+        } else {
             return view('404');
         }
-
-        }
-
-    public function edit($id){
-        //
-    }
-
-    public function update(Request $request)
-    {
-    }
-
-    public function destroy(){
-
     }
 }

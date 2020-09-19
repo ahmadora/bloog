@@ -1,6 +1,5 @@
-@extends('layouts.layouts')
-@section('title')
-@endsection
+
+@extends('layouts.userLayout')
 @section('nav')
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -64,63 +63,71 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-
                 <div class="panel-heading">
-                   <h5> <label>Customers</label></h5>
+                    <a class="btn btn-primary" href="{{route('upload')}}">Add New</a>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <div class="card-body text-secondary">
 
-                        <table width="100%" class="table table-striped table-bordered table-hover"
-                               id="dataTables-example">
-                            <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Title</th>
-                                <th>Address</th>
-                                <th> Created at</th>
-                                <th>Show Devices</th>
-                                <th> Edit</th>
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                        <tr>
+                            @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
+                                <th>Advertisements</th>
+                                <th>User Created</th>
+                                <th>Screen</th>
+                                <th>Created at</th>
+
+
+                            @else
+                                <th>Advertisements</th>
+                                <th>Screen</th>
+                                <th>Created at</th>
                                 <th>Delete</th>
-                            </tr>
-                            </thead>
-                            @foreach($customers as $customer)
-                                <tr>
-                                    <td>{{$customer->name}}</td>
-                                    <td>{{$customer->title}}</td>
-                                    <td>{{$customer->address}}</td>
-                                    <td>{{$customer->created_at}}</td>
-                                    <td><a href="{{route('Devices',$customer->customerId)}}"class="btn btn-primary"><i class="fa fa-tablet"></i></a></td>
+                            @endif
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
+                            @foreach($screens as $screen)
+                                <tr class="odd gradeX">
+                                    <td><img src="{{url($screen->image->path)}}" height="30px" width="30px" /> </td>
 
-                                    <td>
-                                        {!! Form::open(['method'=>'POST','action'=>'Tenant\TenantCustomerController@showUsers']) !!}
-                                        <button type="input" value="{{$customer->id}}" name="assign"
-                                                class="btn btn-warning "><i class="fa fa-edit"></i>
-                                        </button>
-                                        {!! Form::close() !!}
-                                    </td>
-                                    <td>
-                                    {!! Form::open(['method'=>'POST','action'=>'Tenant\TenantCustomerController@delete']) !!}
-                                        @csrf
-                                        <button type="input" value="{{$customer->id}}" name="customerId"
-                                                class="btn btn-danger "><i class="fa fa-times"></i>
-                                        </button>
-                                        {!! Form::close() !!}
-                                    </td>
+                                    <td>{{$screen->image->user->name}}</td>
+
+                                    <td>{{$screen->screen->name}}</td>
+                                    <td>{{$screen->image->created_at->format('H:i - m/d/Y ')}}</td>
                                 </tr>
                             @endforeach
-                        </table>
+                        @else
+                            @foreach($screens as $screen)
+                                @if(\Illuminate\Support\Facades\Auth::user()->id == $screen->image->user_id)
+                                    <tr class="odd gradeX">
+                                        <td><img src="{{url($screen->image->path)}}" height="30px" width="30px" alt ="" /> </td>
+                                        <td>{{$screen->screen->name}}</td>
+                                        <td>{{$screen->image->created_at->format(' H:i - m/d/Y  ')}}</td>
+                                        {!! Form::open(['route'=>['destroyImage',$screen->image->id],'method'=>'POST']) !!}
+                                        <td><button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button></td>
+                                        {!! Form:: close() !!}
+                                    </tr>
+                                @endif
+                            @endforeach
+                        @endif
 
-                    </div>
-                {!! Form::close() !!}
 
-                <!-- .panel-body -->
+                        </tbody>
+
+                    </table>
+                    <!-- /.table-responsive -->
+
                 </div>
-
-                <!-- /.panel -->
+                <!-- /.panel-body -->
             </div>
-            <!-- /.col-lg-12 -->
+            <!-- /.panel -->
         </div>
-        </div>
+        <!-- /.col-lg-12 -->
+    </div>
 @endsection
+
+
+

@@ -1,5 +1,4 @@
 @extends('layouts.layouts')
-
 @section('nav')
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -64,49 +63,37 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Advertisements Info
+                    <h3>Advertisements Info</h3>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
                         <tr>
-                            @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
-                            <th>Advertisements</th>
-                            <th>User Created</th>
-                            <th>Screen</th>
-                            <th>Created at</th>
-
-                            @else
-                                    <th>Advertisements</th>
-                                    <th>Screen</th>
-                                    <th>Created at</th>
-                            @endif
+{{--                            @if(\Illuminate\Support\Facades\Auth::user()->id == 1)--}}
+                                <th>Advertisements</th>
+                                <th>User Created</th>
+                                <th>Screen</th>
+{{--                                <th>Customer</th>--}}
+                                <th>Created at</th>
+                            <td>Delete</td>
                         </tr>
                         </thead>
                         <tbody>
-                                @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
-                                    @foreach($screens as $screen)
-                                        <tr class="odd gradeX">
-                                <td><img src="{{url($screen->image->path)}}" height="30px" width="30px" /> </td>
+                        @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
+                            @foreach($screens as $screen)
+                                <tr class="odd gradeX">
+                                    <td><img src="{{url($screen->image->path)}}" height="30px" width="30px"/></td>
 
                                     <td>{{$screen->image->user->name}}</td>
-
-                                <td>{{$screen->screen->name}}</td>
-                                <td>{{$screen->image->created_at->format('H:i - m/d/Y ')}}</td>
-                                        </tr>
-                                    @endforeach
-                                @else
-                                    @foreach($screens as $screen)
-                                        @if(\Illuminate\Support\Facades\Auth::user()->id == $screen->image->user_id)
-                                        <tr class="odd gradeX">
-                                            <td><img src="{{url($screen->image->path)}}" height="30px" width="30px" /> </td>
-                                            <td>{{$screen->screen->name}}</td>
-                                            <td>{{$screen->image->created_at->format(' H:i - m/d/Y  ')}}</td>
-                                          </tr>
-                                        @endif
-                                    @endforeach
-                                @endif
+                                    <td>{{$screen->screen->name}}</td>
+                                    <td>{{$screen->image->created_at->format('H:i - m/d/Y ')}}</td>
+                                    {!! Form::open(['route'=>['destroyImage',$screen->image->id],'method'=>'POST']) !!}
+                                    <td><button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button></td>
+                                    {!! Form:: close() !!}
+                                </tr>
+                            @endforeach
+                        @endif
                         </tbody>
                     </table>
                     <!-- /.table-responsive -->
@@ -119,3 +106,6 @@
         <!-- /.col-lg-12 -->
     </div>
 @endsection
+
+
+

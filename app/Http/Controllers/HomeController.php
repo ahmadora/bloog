@@ -25,7 +25,6 @@ class HomeController extends Controller
         $name = Auth::user()->name;
         $password = Auth::user()->getAuthPassword();
         $URL = "http://localhost:8080/api/auth/login";
-//        dd($email);
         $help = new HelperClass($email, $password, $token);
         if ($help->isTenant()) {
             $client = new Client(['headers' => ['Content-Type' => 'application/json']]);

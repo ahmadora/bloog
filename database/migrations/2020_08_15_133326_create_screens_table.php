@@ -19,7 +19,7 @@ class CreateScreensTable extends Migration
             $table->string("location");
             $table->string('customerId')->nullable();
             $table->string('deviceId')->nullable();
-            $table->boolean('available')->default('true');
+            $table->boolean('available')->default(true);
             $table->timestamps();
         });
     }

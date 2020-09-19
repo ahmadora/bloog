@@ -80,13 +80,11 @@
 
             <section class="tm-content tm-contact">
 
-                <h2 class="mb-4 tm-content-title">Create New Device</h2>
+                <h3 class="mb-4 tm-content-title">Create New Device</h3>
                 <p class="mb-85"></p>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-
-                            <a class="btn btn-primary" href={{route('showDevices')}}>Show Devices</a>
-
+                        <a class="btn btn-primary" href={{route('showDevices')}}>Show Devices</a>
                     </div>
                 <form id="contact-form" action={{route('createDevice')}} method="POST">
                     @csrf

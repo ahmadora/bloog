@@ -95,6 +95,7 @@
                     @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->isCustomer && ! \Illuminate\Support\Facades\Auth::user()->isActive)
                         <section class="tm-content">
+                            <label>Please Renter Your Password</label>
                             <input id="password" type="password"  name="password" required autocomplete="current-password">
                             <button type="submit"><a class="btn btn-primary" >Active Account</a></button>
                         </section>

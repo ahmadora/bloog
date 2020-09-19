@@ -1,8 +1,9 @@
-@extends('layouts.userLayout')
+@extends('layouts.layouts')
 @section('title')
-    Users
+    Customer Info
 @endsection
 @section('nav')
+
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -61,61 +62,62 @@
         <!-- /.dropdown-user -->
     </li>
 @endsection
+
+
 @section('content')
-
-    <div class="card text-center" xmlns="http://www.w3.org/1999/html">
-        <div class="card-body text-secondary">
-            {!! Form::open(['method'=>'POST','action'=>'ScreenController@edit']) !!}
-            @csrf
-
-            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th> Location Screen</th>
-
-                    @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
-                        <th>Status To Edit</th>
-                        <th> Created at</th>
-                        <th>Delete</th>
-                    @endif
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($screens as $screen)
-                    <tr class="gradeC">
-                        @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
-                            <td> {!! $screen->name !!}</td>
-                            <td>{{$screen->location}}</td>
-                            <td> @if($screen->available)
-                                    Available
-                                @else
-                                    Not Available
-                                @endif
-                            </td>
-                            <td>{{$screen->created_at->format('m/d/Y')}}</td>
-                            <td>
-                                @if($screen->available)
-                                    <div class="form-group">
-                                        <button type="submit" value="{{$screen->id}}" name="delete"
-                                                class="btn btn-danger "><i class="fa fa-times"></i>
-                                        </button>
-                                        @else
-                                            <button type="submit" value="{{$screen->id}}" name="uassign"
-                                                    class="btn btn-danger "><i class="fa fa-times"></i>
-                                            </button>
-                                    </div></td>
-                        @endif
-                        @else
-                            <td> {!! $screen->name !!}</td>
-                            <td>{{$screen->location}}</td>
-                        @endif
+    <div class="panel-heading">
+        <a class="btn btn-primary" href={{route('userShow')}}> Assign User</a>
+        <a class="btn btn-primary" href={{route('showCustomerUser')}}> Customers</a>
+    </div>
+    {!! Form::open(['method'=>'POST','action'=>'Tenant\TenantCustomerController@delete']) !!}
+    @csrf
+    <!-- .panel-heading -->
+    <div class="panel-body">
+        @if(!empty($users))
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">User Status</th>
+                        <th scope="col">Action</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                        <tbody>
+                        @foreach($users as $user)
+                        <tr>
 
-        </div>
+                            @if($customer[0]->customerId == $user->customerId)
+                                <th scope="row">{{$user->id}}</th>
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->email}}</td>
+                                @if($user->isActive==1)
+                                    <td>Activated</td>
+                                @else
+                                    <td>Not activated</td>
+                                @endif
+                                <td>
+                                    <div class="form-group ">
+                                        <div class="form-check">
+                                            {!! Form::checkbox('userId[]', $user->userId, false ,['class'=>'form-control']) !!}
+                                        </div>
+                                    </div>
+                                </td>
+                            @endif
+
+                        </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+
+                <button type="submit" class="btn btn-success">unassigned User</button>
+
+
     </div>
     {!! Form::close() !!}
+    @else
+
+    @endif
 @endsection
+
