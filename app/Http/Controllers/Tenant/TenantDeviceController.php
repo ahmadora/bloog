@@ -116,7 +116,7 @@ class TenantDeviceController extends Controller
             $response = json_decode($data, true);
             DB::table('devices')->where('deviceId', '=', $deviceId)->delete();
             DB::table('screens')->where('deviceId', '=', $deviceId)->update(['available' => true, 'customerId' => null]);
-            return redirect()->back();
+            return redirect()->route('showDevices');
         }
     }
 

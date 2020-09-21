@@ -92,7 +92,7 @@ class ScreenController extends Controller
                 'deviceId' => $deviceI[0]->deviceId,
                 'customerId' => $deviceI[0]->customerId
             ]);
-            return view('admin.device.service');
+            return redirect()->route('showDevices');
         } else {
             return view('404');
         }

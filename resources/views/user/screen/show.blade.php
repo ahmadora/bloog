@@ -1,6 +1,6 @@
 @extends('layouts.userLayout')
 @section('title')
-    Users
+    Advertisements
 @endsection
 @section('nav')
     <li class="dropdown">
@@ -62,60 +62,65 @@
     </li>
 @endsection
 @section('content')
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Screen</h3>
+                </div>
+                <div class="panel-body">
+                    {!! Form::open(['method'=>'POST','action'=>'ScreenController@edit']) !!}
+                    @csrf
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th> Location Screen</th>
 
-    <div class="card text-center" xmlns="http://www.w3.org/1999/html">
-        <div class="card-body text-secondary">
-            {!! Form::open(['method'=>'POST','action'=>'ScreenController@edit']) !!}
-            @csrf
-
-            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th> Location Screen</th>
-
-                    @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
-                        <th>Status To Edit</th>
-                        <th> Created at</th>
-                        <th>Delete</th>
-                    @endif
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($screens as $screen)
-                    <tr class="gradeC">
-                        @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
-                            <td> {!! $screen->name !!}</td>
-                            <td>{{$screen->location}}</td>
-                            <td> @if($screen->available)
-                                    Available
-                                @else
-                                    Not Available
-                                @endif
-                            </td>
-                            <td>{{$screen->created_at->format('m/d/Y')}}</td>
-                            <td>
-                                @if($screen->available)
-                                    <div class="form-group">
-                                        <button type="submit" value="{{$screen->id}}" name="delete"
-                                                class="btn btn-danger "><i class="fa fa-times"></i>
-                                        </button>
+                            @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
+                                <th>Status To Edit</th>
+                                <th> Created at</th>
+                                <th>Delete</th>
+                            @endif
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($screens as $screen)
+                            <tr class="gradeC">
+                                @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
+                                    <td> {!! $screen->name !!}</td>
+                                    <td>{{$screen->location}}</td>
+                                    <td> @if($screen->available)
+                                            Available
                                         @else
-                                            <button type="submit" value="{{$screen->id}}" name="uassign"
-                                                    class="btn btn-danger "><i class="fa fa-times"></i>
-                                            </button>
-                                    </div></td>
-                        @endif
-                        @else
-                            <td> {!! $screen->name !!}</td>
-                            <td>{{$screen->location}}</td>
-                        @endif
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-
+                                            Not Available
+                                        @endif
+                                    </td>
+                                    <td>{{$screen->created_at->format('m/d/Y')}}</td>
+                                    <td>
+                                        @if($screen->available)
+                                            <div class="form-group">
+                                                <button type="submit" value="{{$screen->id}}" name="delete"
+                                                        class="btn btn-danger "><i class="fa fa-times"></i>
+                                                </button>
+                                                @else
+                                                    <button type="submit" value="{{$screen->id}}" name="uassign"
+                                                            class="btn btn-danger "><i class="fa fa-times"></i>
+                                                    </button>
+                                            </div></td>
+                                @endif
+                                @else
+                                    <td> {!! $screen->name !!}</td>
+                                    <td>{{$screen->location}}</td>
+                                @endif
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    {!! Form::close() !!}
+                </div>
+            </div>
         </div>
     </div>
-    {!! Form::close() !!}
+
 @endsection

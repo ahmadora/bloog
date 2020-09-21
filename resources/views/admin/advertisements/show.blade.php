@@ -74,25 +74,31 @@
                                 <th>Advertisements</th>
                                 <th>User Created</th>
                                 <th>Screen</th>
-{{--                                <th>Customer</th>--}}
                                 <th>Created at</th>
                             <td>Delete</td>
                         </tr>
                         </thead>
                         <tbody>
                         @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
+
                             @foreach($screens as $screen)
+
                                 <tr class="odd gradeX">
                                     <td><img src="{{url($screen->image->path)}}" height="30px" width="30px"/></td>
 
                                     <td>{{$screen->image->user->name}}</td>
                                     <td>{{$screen->screen->name}}</td>
+{{--                                    @foreach($customers as $customer)--}}
+{{--                                    <td> {{$customer->name }}</td>--}}
+{{--                                    @endforeach--}}
                                     <td>{{$screen->image->created_at->format('H:i - m/d/Y ')}}</td>
                                     {!! Form::open(['route'=>['destroyImage',$screen->image->id],'method'=>'POST']) !!}
                                     <td><button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button></td>
                                     {!! Form:: close() !!}
                                 </tr>
+
                             @endforeach
+
                         @endif
                         </tbody>
                     </table>

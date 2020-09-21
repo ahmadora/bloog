@@ -25,17 +25,8 @@ class ImageController extends Controller
     {
         $images = Image::all();
         $screens = ScreenImage::all();
-        $customers = array();
-        foreach ($images as $image){
-            $user = User::where('id','=',$image->user_id)->get('customerId');
-            $customer = Customer::where('customerId','=',$user[0]->customerId)->get();
-
-            array_push($customers, $customer[0]->name);
-
-        }
-//        dd($customers);
         if (Auth::user()->id == 1) {
-            return view('admin.advertisements.show')->with('images', $images)->with('screens', $screens)->with('customers',$customers);
+            return view('admin.advertisements.show')->with('images', $images)->with('screens', $screens);
         } else {
             if (Auth::user()->isActive) {
                 return view('user.advertisements')->with('images', $images)->with('screens', $screens);

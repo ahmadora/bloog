@@ -61,19 +61,45 @@
 @endsection
 
 @section('content')
-    <form method="post" action="{{route("screen")}}" enctype="multipart/form-data">
-        {{ csrf_field() }}
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Create Screen</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a class="btn btn-primary" href={{route('showScreen')}}>Show Screens</a>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="card-body text-secondary">
 
-        <div class="form-group">
-            <label for="author">name</label>
-            <input type="text" class="form-control" name="screen"/>
-            <label for="author">location</label>
-            <input type="text" class="form-control" name="location"/>
-            <div class="form-group">
-                <label for="author">Customers</label>
-                {!! Form::Select('customers',$customers ,null,['class'=>'form-control','placeholder'=>'Please select ...']) !!}
+                        <form method="post" action="{{route("screen")}}" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <label for="author">name</label>
+                                <input type="text" class="form-control" name="screen"/>
+                                <label for="author">location</label>
+                                <input type="text" class="form-control" name="location"/>
+                            <div class="form-group">
+                                <label for="author">Customers</label>
+                                {!! Form::Select('customers',$customers ,null,['class'=>'form-control','placeholder'=>'Please select ...']) !!}
+                            </div>
+                    </div>
+
+                            <div class="text-left">
+                                <button type="submit" class="btn btn-big btn-success"> Create</button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+
+                </div>
+                <!-- /.panel-body -->
             </div>
+            <!-- /.panel -->
         </div>
-        <button type="submit" >submit</button>
-    </form>
+        <!-- /.col-lg-12 -->
+    </div>
 @endsection

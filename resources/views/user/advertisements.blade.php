@@ -62,6 +62,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
+            <h3>Advertisements</h3>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <a class="btn btn-primary" href="{{route('upload')}}">Add New</a>

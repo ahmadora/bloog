@@ -62,47 +62,66 @@
     </li>
 @endsection
 @section('content')
-    <div class="container">
 
 
-            <div class="card text-center" xmlns="http://www.w3.org/1999/html">
-                <div class="card-header text-secondary">
-                    @foreach($devices as $device)
 
-                    <ul class="nav nav-pills card-header-pills">
-                        <li class="nav-item">
-                            <a class="navbar-text" > <label>You Are Edit Device :  {{$device->name}} </label></a>
-                        </li>
-                    </ul>
-                    <div class="card-body text-secondary">
-                        {!! Form::open(['method'=>'POST','action'=>'ScreenController@update']) !!}
-                        @csrf
 
-                        <table width="70%" class="table table-secondary  table-dark" class="center">
-                            <thead>
-                            <tr>
-                                <th scope="col">Check</th>
-                                <th scope="col">Screen Name</th>
-                                <th scope="col"> Location</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($screens as $screen)
-                                <tr>
-                                   <td> {!! Form::checkbox('screen[]', $screen->id, false ,['class'=>'form-control']) !!}
-                                   </td>
-                                    <td> {!! $screen->name !!}</td>
-                                    <td> {!! $screen->location !!}</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-success" name="deviceName" value="{{$device->name}}">Submit</button>
-                        </div>
+
+
+
+
+
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        @foreach($devices as $device)
+                            <h4 > You Are Edit Device :  {{$device->name}}</h4>
+                        @endforeach
+
                     </div>
-                </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+
+                                <div class="card-body text-secondary">
+                                    {!! Form::open(['method'=>'POST','action'=>'ScreenController@update']) !!}
+                                    @csrf
+
+                                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">Check</th>
+                                            <th scope="col">Screen Name</th>
+                                            <th scope="col"> Location</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($screens as $screen)
+                                            <tr>
+                                                <td> {!! Form::checkbox('screen[]', $screen->id, false ,['class'=>'form-groups']) !!}
+                                                </td>
+                                                <td> {!! $screen->name !!}</td>
+                                                <td> {!! $screen->location !!}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success" name="deviceName" value="{{$device->name}}">Submit</button>
+                                    </div>
+                                </div>
+                        </div>
+
+                    </div>
+
+                    </div>
+                    <!-- /.panel-body -->
+
+                <!-- /.panel -->
             </div>
-        @endforeach
-    </div>
+            <!-- /.col-lg-12 -->
+
+
+
 @endsection

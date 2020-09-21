@@ -2,12 +2,10 @@
 @section('title') Services @endsection
 @section('content')
     <div class="col-lg-12">
+        <h4>Upload Advertisements</h4>
         <div class="panel panel-default">
             <div class="panel-heading">
-
-                    <a class="btn btn-primary" href={{route('showImages')}}>Show ADs</a>
-
-
+                <a class="btn btn-primary" href={{route('showImages')}}>Show Advertisements</a>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">

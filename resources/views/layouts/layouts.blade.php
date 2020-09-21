@@ -163,9 +163,12 @@
 
 <!-- Morris Charts JavaScript -->
 <script src="../vendor/raphael/raphael.min.js"></script>
-<script src="../vendor/flot/jquery.flot.js"></script>
-<script src="../vendor/flot/jquery.flot.time.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+{{--<script src="../vendor/flot/jquery.flot.js"></script>--}}
+{{--<script src="../vendor/flot/jquery.flot.time.js"></script>--}}
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>--}}
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="../dist/js/sb-admin-2.js"></script>
 

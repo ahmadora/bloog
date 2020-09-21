@@ -65,6 +65,11 @@
 
 
 @section('content')
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="panel panel-default">
     <div class="panel-heading">
         <a class="btn btn-primary" href={{route('userShow')}}> Assign User</a>
         <a class="btn btn-primary" href={{route('showCustomerUser')}}> Customers</a>
@@ -117,7 +122,9 @@
     </div>
     {!! Form::close() !!}
     @else
-
+            </div>
+        </div>
+    </div>
     @endif
 @endsection
 

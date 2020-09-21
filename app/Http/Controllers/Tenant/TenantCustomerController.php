@@ -88,6 +88,7 @@ class TenantCustomerController extends Controller
         if ($customersId != null) {
             $customerIds = DB::table('customers')->select('customerId')->where('id', '=', $customersId)->get('customerId');
             $str = $customerIds[0]->customerId;
+
             $URL = 'http://localhost:8080/api/customer/' . $str;
             $client = new Client([
                 'headers' => [
@@ -97,29 +98,31 @@ class TenantCustomerController extends Controller
             ]);
             $request = $client->request('DELETE', $URL);
             $data = $request->getStatusCode();///200
-            DB::table('customers')->where('id', '=', $customersId)->delete();
-            DB::table('users')->where('customerId', '=', $s)->update([
+
+            DB::table('users')->where('customerId', '=', $str)->update([
                 'isCustomer' => false,
                 'isActive' => false,
                 'customerId' => null,
                 'activationLink' => null,
                 'userId' => null,
             ]);
-            DB::table('devices')->where('customerId', '=', $s)->update([
+            DB::table('devices')->where('customerId', '=', $str)->update([
                 'available' => true,
                 'customerId' => null,
                 'availableScreen' => true,
                 'screenId' => null
             ]);
-            DB::table('screens')->where('customerId', '=', $s)->delete();
-            $users = DB::table('users')->where('customerId', '=', $s)->get('id');
+            DB::table('screens')->where('customerId', '=', $str)->delete();
+            $users = DB::table('users')->where('customerId', '=', $str)->get('id');
             foreach ($users as $user) {
                 DB::table('images')->where('user_id', '=', $user[0]->id)->delete();
             }
+            DB::table('customers')->where('id', '=', $customersId)->delete();
             return redirect()->back();
 
         } else {
             if ($usersId != null) {
+
                 foreach ($usersId as $value) {
                     $URL = 'http://localhost:8080/api/user/' . $value;
                     $client = new Client([
@@ -130,6 +133,7 @@ class TenantCustomerController extends Controller
                     ]);
                     $request = $client->request('DELETE', $URL);
                     $data = $request->getStatusCode();///200
+
                     DB::table('users')->where('userId', '=', $value)->update([
                         'isCustomer' => false,
                         'isActive' => false,
@@ -138,7 +142,9 @@ class TenantCustomerController extends Controller
                         'userId' => null
                     ]);
                 }
-                return redirect()->back();
+
+
+                return redirect()->route('showCustomerUser');
             }
         }
     }

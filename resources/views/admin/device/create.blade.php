@@ -76,37 +76,49 @@
                 {{ session()->get('message') }}
             </div>
         @endif
-        <main class="tm-col-right tm-contact-main"> <!-- Content -->
 
-            <section class="tm-content tm-contact">
-
-                <h3 class="mb-4 tm-content-title">Create New Device</h3>
-                <p class="mb-85"></p>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <a class="btn btn-primary" href={{route('showDevices')}}>Show Devices</a>
-                    </div>
-                <form id="contact-form" action={{route('createDevice')}} method="POST">
-                    @csrf
-                    <div class="form-group mb-4">
-                        <input type="text" name="name" class="form-control" placeholder="Name" required="" />
-                    </div>
-                    <div class="form-group mb-4">
-                        <input type="text" name="type" class="form-control" placeholder="Type" required="" />
-                    </div>
-                    <div class="form-group mb-4">
-                        <input type="text" name="label" class="form-control" placeholder="label" required="" />
-                    </div>
-
-                    <div class="text-left">
-                        <button type="submit" class="btn btn-big btn-success"> Create</button>
-
-                    </div>
-
-                </form>
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Devices</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a class="btn btn-primary" href={{route('showDevices')}}>Show Devices</a>
                 </div>
-            </section>
-        </main>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="card-body text-secondary">
+
+
+                        <form id="contact-form" action={{route('createDevice')}} method="POST">
+                            @csrf
+                            <div class="form-group mb-4">
+                                <input type="text" name="name" class="form-control" placeholder="Name" required="" />
+                            </div>
+                            <div class="form-group mb-4">
+                                <input type="text" name="type" class="form-control" placeholder="Type" required="" />
+                            </div>
+                            <div class="form-group mb-4">
+                                <input type="text" name="label" class="form-control" placeholder="label" required="" />
+                            </div>
+
+                            <div class="text-left">
+                                <button type="submit" class="btn btn-big btn-success"> Create</button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
     </div>
 @endsection
 

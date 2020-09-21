@@ -67,53 +67,66 @@
             {{ session()->get('message') }}
         </div>
     @endif
-    @foreach($devices as $device)
-    <h4 > You Are Edit Device :  {{$device->name}}</h4>
-        <div class="card text-center" xmlns="http://www.w3.org/1999/html">
-            <div class="card-header text-secondary">
-                <ul class="nav nav-pills card-header-pills">
-                    <li class="nav-item">
-                        <a class="navbar-text" >Active Customers</a>
-                    </li>
-                </ul>
-                <div class="card-body text-secondary">
-                    {!! Form::open(['method'=>'POST','action'=>'Tenant\TenantDeviceController@update']) !!}
-                    @csrf
 
-                    <table width="70%" class="table table-secondary  table-dark" class="center">
-                        <thead>
-                        <tr class="center">
-                            <th scope="col">Add</th>
-{{--                            <th scope="col"></th>--}}
-                            <th scope="col">Customer Name</th>
-                            <th scope="col">Customer Email</th>
-                            <th scope="col">Created At</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($customers as $customer)
-                            <tr>
-                                <th scope="row">
-                                    <div class="form-group ">
-                                        <div class="form-check">
-                                            {!! Form::checkbox('customer[]', $customer->customerId, false ,['class'=>'form-control']) !!}
-                                        </div>
-                                    </div>
-                                </th>
-                                <td> {!! $customer->name !!}</td>
-                                <td> {!! $customer->email !!}</td>
-                                <td>{{$customer->created_at}}</td>
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @foreach($devices as $device)
+                        <h4 > You Are Edit Device :  {{$device->name}}</h4>
+                    @endforeach
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+
+                    <div class="card-body text-secondary">
+                        {!! Form::open(['method'=>'POST','action'=>'Tenant\TenantDeviceController@update']) !!}
+                        @csrf
+
+                        <table width="70%" class="table table-secondary  table-dark" class="center">
+                            <thead>
+                            <tr class="center">
+                                <th scope="col">Add</th>
+                                {{--                            <th scope="col"></th>--}}
+                                <th scope="col">Customer Name</th>
+                                <th scope="col">Customer Email</th>
+                                <th scope="col">Created At</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                    <div class="form-group">
-                    <button type="submit" class="btn btn-success" name="submit" value="{{$device->deviceId}}">Submit</button>
-                </div>
-                </div>
-            </div>
-        </div>
+                            </thead>
+                            <tbody>
+                            @foreach($customers as $customer)
+                                <tr>
+                                    <th scope="row">
+                                        <div class="form-group ">
+                                            <div class="form-check">
+                                                {!! Form::checkbox('customer[]', $customer->customerId, false ,['class'=>'form-control']) !!}
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <td> {!! $customer->name !!}</td>
+                                    <td> {!! $customer->email !!}</td>
+                                    <td>{{$customer->created_at}}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success" name="submit" value="{{$device->deviceId}}">Submit</button>
+                        </div>
+                    </div>
 
-        @endforeach
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+
+
+
 
     @endsection
